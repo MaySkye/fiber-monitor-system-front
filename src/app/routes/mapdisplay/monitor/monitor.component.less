@@ -1,0 +1,114 @@
+@import '~@delon/theme/styles/default';
+:host ::ng-deep {
+  .map-chart {
+    height: 457px;
+    padding-top: 24px;
+    text-align: center;
+
+    img {
+      display: inline-block;
+      max-width: 100%;
+      max-height: 437px;
+    }
+  }
+
+  .pie-card {
+    .pie-stat {
+      font-size: 24px !important;
+    }
+  }
+
+  .active-chart {
+    position: relative;
+
+    g2-mini-area {
+      margin-top: 32px;
+    }
+
+    .active-grid {
+      p {
+        position: absolute;
+        top: 80px;
+        width: 100%;
+        padding-bottom: 4px;
+        border-bottom: 1px dashed #e9e9e9;
+      }
+
+      p:last-child {
+        top: 115px;
+      }
+    }
+
+    .active-legend {
+      position: relative;
+      height: 20px;
+      margin-top: 8px;
+      font-size: 0;
+      line-height: 20px;
+
+      span {
+        display: inline-block;
+        width: 33.33%;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      span:first-child {
+        text-align: left;
+      }
+
+      span:last-child {
+        text-align: right;
+      }
+    }
+  }
+
+  @media screen and (max-width: @screen-lg) {
+    .map-chart {
+      height: auto;
+    }
+  }
+}
+.example-box {
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+  position: relative;
+  z-index: 1;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+  0 2px 2px 0 rgba(0, 0, 0, 0.14),
+  0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.example-box:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.example-handle {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  color: #ccc;
+  cursor: move;
+  width: 24px;
+  height: 24px;
+  z-index: 9999;
+}
+.drag-header {
+  height: 50px;
+  background: #ffffff;
+  cursor: move;
+  width: auto;
+}

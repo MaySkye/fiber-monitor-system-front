@@ -1,0 +1,16 @@
+<nz-table class="mainline-table" #basicTable [nzData]="listOfData" [nzShowPagination]="false">
+  <thead>
+  <tr class="tr-color">
+    <th>位置</th>
+    <th>传输速率</th>
+    <th>工作状态</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{ data.name }}</td>
+    <td>{{ data.fValue }}</td>
+    <td [style.color]="data.status === '1' ? 'green': 'red'">{{ data.status === '1' ? '正常' : '异常' }}</td>
+  </tr>
+  </tbody>
+</nz-table>

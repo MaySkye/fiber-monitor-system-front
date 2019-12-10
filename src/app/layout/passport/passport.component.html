@@ -1,0 +1,18 @@
+<div class="container">
+  <header-i18n showLangText="false" class="langs"></header-i18n>
+  <div class="wrap">
+    <div class="top">
+      <div class="head">
+        <img class="logo" src="./assets/logo-color.svg">
+        <span class="title">光纤授时态势监控系统</span>
+      </div>
+      <div class="desc">欢迎使用光纤授时态势监控系统</div>
+    </div>
+    <router-outlet></router-outlet>
+    <global-footer [links]="links">
+      Copyright
+      <i class="anticon anticon-copyright"></i> 2019
+      <a href="https://www.bupt.edu.cn/" target="_blank">北京邮电大学</a>
+    </global-footer>
+  </div>
+</div>

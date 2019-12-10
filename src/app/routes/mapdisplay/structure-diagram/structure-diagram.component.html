@@ -1,0 +1,534 @@
+<page-header>站点详情</page-header>
+<title>{{SiteInfo.name}}站点</title>
+<div class="alain-default__content-title">
+  <h1>
+    {{SiteInfo.name}}站点组态图
+    <!--    <small>Welcome !</small>-->
+    <p>{{aa}}</p>
+  </h1>
+</div>
+<div style="margin: 0 auto">
+  <div style="width: 50%;height: 700px;background: white;display: inline-block;">
+
+    <img *ngIf="exhibitionImg ==1" src="{{imageUrl}}">
+
+    <div *ngIf="exhibition ==1" class="LinkLine">
+      <div class="x1">
+        <img (click)="showAlarmInfo('监控单元',alarmImg[0])" alt="监控单元" src="./assets/image/device/device_61.png">
+        <img *ngIf="alarmImg[0] == 1" alt="预警" class="a1" src="./assets/image/light01on.gif">
+        <p>监控单元</p>
+      </div>
+      <div class="x2">
+        <img  *ngIf="alarmImg[1] == 1"alt="预警" class="a1" src="./assets/image/light01on.gif">
+        <img (click)="showAlarmInfo('光频传递系统接收设备',alarmImg[1])" alt="光频传递系统接收设备A1.5" src="./assets/image/device/device_51.png">
+        <p>光频传递系统接收设备A1.5</p>
+      </div>
+      <div class="t2">
+        <table class="tableStyle">
+          <thead>
+          <tr>
+            <th colSpan="2">光频传递系统接收设备A1.5</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>电源状态</td>
+            <td>{{a15PowerStatus}}</td>
+          </tr>
+          <tr>
+            <td>接收设备输入光功率</td>
+            <td>{{a15InputPower}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="x3">
+        <img (click)="showAlarmInfo('参考腔稳频激光器单元',alarmImg[2])" alt="参考腔稳频激光器单元A1.1" src="./assets/image/device/device_31.png">
+        <img  *ngIf="alarmImg[2] == 1" alt="预警" class="a1" src="./assets/image/light01on.gif">
+        <p>参考腔稳频激光器单元A1.1</p>
+      </div>
+      <div class="t3">
+        <table class="tableStyle">
+          <thead>
+          <tr>
+            <th colSpan="2">参考腔稳频激光器单元A1.1</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>电源状态</td>
+            <td>{{a11PowerStatus}}</td>
+          </tr>
+          <tr>
+            <td>输出功率</td>
+            <td>{{a11OutputPower}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="x4">
+        <img (click)="showAlarmInfo('光频传递系统接收设备',alarmImg[3])" alt="光频传递系统接收设备A1.6" src="./assets/image/device/device_51.png">
+        <img *ngIf="alarmImg[3] == 1" alt="预警" class="a1" src="./assets/image/light01on.gif">
+        <p>光频传递系统接收设备A1.6</p>
+      </div>
+      <div class="t4">
+        <table class="tableStyle">
+          <thead>
+          <tr>
+            <th colSpan="2">光频传递系统接收设备A1.6</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>电源状态</td>
+            <td>{{a16PowerStatus}}</td>
+          </tr>
+          <tr>
+            <td>接收设备输入光功率</td>
+            <td>{{a16InputPower}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="x5">
+        <img (click)="showAlarmInfo('光频传递系统接收设备',alarmImg[4])" alt="光频传递系统接收设备A1.2" src="./assets/image/device/device_51.png">
+        <img *ngIf="alarmImg[4] == 1" alt="预警" class="a1" src="./assets/image/light01on.gif">
+        <p>光频传递系统接收设备A1.2</p>
+      </div>
+      <div class="t5">
+        <table class="tableStyle">
+          <thead>
+          <tr>
+            <th colSpan="2">光频传递系统接收设备A1.2</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>电源状态</td>
+            <td>{{a12PowerStatus}}</td>
+          </tr>
+          <tr>
+            <td>接收设备输入光功率</td>
+            <td>{{a12InputPower}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="x6">
+        <img *ngIf="alarmImg[5] == 1" alt="预警" class="a1" src="./assets/image/light01on.gif">
+        <img (click)="showAlarmInfo('光频传递系统接收设备', alarmImg[5])" alt="光频传递系统接收设备A1.3" src="./assets/image/device/device_51.png">
+        <p>光频传递系统接收设备A1.3</p>
+      </div>
+      <div class="t6">
+        <table class="tableStyle">
+          <thead>
+          <tr>
+            <th colSpan="2">光频传递系统接收设备A1.3</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>接收设备输入光功率</td>
+            <td>{{a12InputPower}}</td>
+          </tr>
+          <tr>
+            <td>电源状态</td>
+            <td>{{a12PowerStatus}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="x7">
+        <img (click)="showAlarmInfo('拍频比对设备',alarmImg[6])" alt="拍频比对设备A1.4" src="./assets/image/device/device_71.png">
+        <img *ngIf="alarmImg[6] == 1" alt="预警" class="a1" src="./assets/image/light01on.gif">
+        <p>拍频比对设备A1.4</p>
+      </div>
+      <div class="t7">
+        <table class="tableStyle">
+          <thead>
+          <tr>
+            <th colSpan="2">拍频比对设备A1.4</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>环外偏频信号</td>
+            <td>{{a14OutOfBandSignal}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+  </div>
+  <div style="float: right;vertical-align: top;width: 50%">
+    <div style="height: 20px; width: 100%">
+<!--      <button (click)="sendClosed()" [nzLoading]="isLoadingOne" nz-button nzType="danger"><i nz-icon-->
+<!--                                                                                             nzType="poweroff"></i>关闭设备-->
+<!--      </button>-->
+    </div>
+    <table class="tableStyle">
+      <thead>
+      <tr>
+        <th colSpan="2">参考腔稳频激光器单元A1.1</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>输出功率</td>
+        <td>{{a11OutputPower}}</td>
+      </tr>
+      <tr>
+        <td>光源锁定状态</td>
+        <td>{{a11LightsourceBlockedState}}</td>
+      </tr>
+      <tr>
+        <td>离子泵电流</td>
+        <td>{{a11LonPumpCurrent}}</td>
+      </tr>
+      <tr>
+        <td>透射峰电压</td>
+        <td>{{a11TransmissionPeakVoltage}}</td>
+      </tr>
+      <tr>
+        <td>电源状态</td>
+        <td>{{a11PowerStatus}}</td>
+      </tr>
+      <tr>
+        <td>AOM输出光功率</td>
+        <td>{{a11AOMOutputPower}}</td>
+      </tr>
+      <tr>
+        <td>AOM驱动功率</td>
+        <td>{{a11AOMDrivePower}}</td>
+      </tr>
+      <tr>
+        <td>腔前探测器输出电压信号</td>
+        <td>{{a11PreCavityOutputVoltage}}</td>
+      </tr>
+      <tr>
+        <td>腔前探测器输出射频信号</td>
+        <td>{{a11PreCavityOutputRF}}</td>
+      </tr>
+      <tr>
+        <td>腔后探测器输出电压信号</td>
+        <td>{{a11PostCavityOutputVoltage}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <table class="tableStyle">
+      <thead>
+      <tr>
+        <th colSpan="2">光频传递系统接收设备A1.2</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>接收设备输入光功率</td>
+        <td>{{a12InputPower}}</td>
+      </tr>
+      <tr>
+        <td>AOM驱动功率</td>
+        <td>{{a12AOMDrivePower}}</td>
+      </tr>
+      <tr>
+        <td>电源状态</td>
+        <td>{{a12PowerStatus}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <table class="tableStyle">
+      <thead>
+      <tr>
+        <th colSpan="2">光频传递系统接收设备A1.3</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>接收设备输入光功率</td>
+        <td>{{a13InputPower}}</td>
+      </tr>
+      <tr>
+        <td>AOM驱动功率</td>
+        <td>{{a13AOMDrivePower}}</td>
+      </tr>
+      <tr>
+        <td>电源状态</td>
+        <td>{{a13PowerStatus}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <table class="tableStyle">
+      <thead>
+      <tr>
+        <th colSpan="2">拍频比对设备A1.4</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>环外偏频信号</td>
+        <td>{{a14OutOfBandSignal}}</td>
+      </tr>
+
+      </tbody>
+    </table>
+    <table class="tableStyle">
+      <thead>
+      <tr>
+        <th colSpan="2">光频传递系统接收设备A1.5</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>接收设备输入光功率</td>
+        <td>{{a15InputPower}}</td>
+      </tr>
+      <tr>
+        <td>AOM驱动功率</td>
+        <td>{{a15AOMDrivePower}}</td>
+      </tr>
+      <tr>
+        <td>电源状态</td>
+        <td>{{a15PowerStatus}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <table class="tableStyle">
+      <thead>
+      <tr>
+        <th colSpan="2">光频传递系统接收设备A1.6</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>接收设备输入光功率</td>
+        <td>{{a16InputPower}}</td>
+      </tr>
+      <tr>
+        <td>AOM驱动功率</td>
+        <td>{{a16AOMDrivePower}}</td>
+      </tr>
+      <tr>
+        <td>电源状态</td>
+        <td>{{a16PowerStatus}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- 参考腔稳频激光器单元A1.1 -->
+<ng-template #deviceDataA11>
+  <table class="tableStyle">
+    <thead>
+    <tr>
+      <th colSpan="2">参考腔稳频激光器单元A1.1</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>光频输出功率A1.1</td>
+      <td> 11</td>
+    </tr>
+    <tr>
+      <td>光频透射峰电压A1.1</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频离子泵电流A1.1</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频电源状态A1.1</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频环境温度A1.1</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频光源锁定状态A1.1</td>
+      <td>111</td>
+    </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<!--光频传递系统发送设备A1.2-->
+<ng-template #deviceDataA12>
+  <table class="tableStyle">
+    <thead>
+    <tr>
+      <th colSpan="2">光频传递系统发送设备A1.2</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>光频输入功率A1.2</td>
+      <td> 11</td>
+    </tr>
+    <tr>
+      <td>光频环内拍频信号A1.2</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频电源状态A1.2</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频输出功率A1.2</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频链路锁定状态A1.2</td>
+      <td>111</td>
+    </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<!--光频传递系统发送设备A1.3-->
+<ng-template #deviceDataA13>
+  <table class="tableStyle">
+    <thead>
+    <tr>
+      <th colSpan="2">光频传递系统发送设备A1.3</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>光频环内拍频信号A1.3</td>
+      <td> 11</td>
+    </tr>
+    <tr>
+      <td>光频链路锁定状态A1.3</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频电源状态A1.3</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频输入功率A1.3</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频输出功率A1.3</td>
+      <td>111</td>
+    </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<!--拍频比对设备A1.4-->
+<ng-template #deviceDataA14>
+  <table class="tableStyle">
+    <thead>
+    <tr>
+      <th colSpan="2">拍频比对设备A1.4</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>光频频率稳定度A1.4</td>
+      <td> 11</td>
+    </tr>
+    <tr>
+      <td>光频相位噪声A1.4</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频光频传递指标A1.4</td>
+      <td>111</td>
+    </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<!--光频传递系统接收设备A1.5-->
+<ng-template #deviceDataA15>
+  <table class="tableStyle">
+    <thead>
+    <tr>
+      <th colSpan="2">光频传递系统接收设备A1.5</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>光频电源状态A1.5</td>
+      <td> 11</td>
+    </tr>
+    <tr>
+      <td>光频输出功率A1.5</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频链路锁定状态A1.5</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频环内拍频信号A1.5</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频输入功率A1.5</td>
+      <td>111</td>
+    </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<!--光频传递系统接收设备A1.6-->
+<ng-template #deviceDataA16>
+  <table class="tableStyle">
+    <thead>
+    <tr>
+      <th colSpan="2">光频传递系统接收设备A1.6</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>光频输出功率A1.6</td>
+      <td> 11</td>
+    </tr>
+    <tr>
+      <td>光频环内拍频信号A1.6</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频链路锁定状态A1.6</td>
+      <td>111</td>
+    </tr>
+    <tr>
+      <td>光频输入功率A1.6</td>
+      <td>111</td>
+    </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<!--关闭设备的弹出框-->
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-template #modalTitle>
+    <div>
+    <img alt="预警" style="width: 50px;display: inline-block" src="./assets/image/light01on.gif">
+    <p style="display: inline-block;">  设备异常信息</p>
+    </div>
+  </ng-template>
+
+  <ng-template #modalContent>
+    <p>{{alarmData}}</p>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <span>操作： </span>
+    <button nz-button nzType="default" (click)="handleCancel()">取消</button>
+    <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">重置设备</button>
+  </ng-template>
+</nz-modal>
