@@ -32,7 +32,7 @@ export class SiteAdminSiteListComponent implements OnInit {
         // { text: '查看', click: (item: any) => `/form/${item.id}` },
         // { text: '编辑', type: 'static', component: FormEditComponent, click: 'reload' },
         {
-          text: '查看组态图',
+          text: '查看监控图',
           type: 'link',
           click:function(data) {
             window.location.assign("#/site-admin/mxgraph?site_name=" + data.name + "&site_level=" + data.level);
