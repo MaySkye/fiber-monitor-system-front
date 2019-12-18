@@ -82,9 +82,13 @@ export class MapdisplayMapviewComponent implements OnInit {
     const opw = this.openInfo(locationInfo, point, map);
     // 注册点击事件,弹出信息窗口
     marker.addEventListener('click', (e) => {
-        top.location.assign("http://localhost:8080/javascript/examples/grapheditor/www/index.html?site_name=zhengzhou");
-        alert('点击了我')
-        this.router.navigate(['/mapdisplay/StructureDiagram', locationInfo]);
+        /*window.open('http://localhost:8080/javascript/examples/grapheditor/www/index.html?sitename='
+          +locationInfo.name+"&sitelevel="+locationInfo.level);*/
+        window.location.assign("#/site-admin/mxgraph?sitename=" + locationInfo.name + "&sitelevel=" + locationInfo.level);
+
+        //location.assign('http://localhost:8080/javascript/examples/grapheditor/www/index.html?sitename='
+        //  +locationInfo.name+"&sitelevel="+locationInfo.level);
+        //this.router.navigate(['/mapdisplay/StructureDiagram', locationInfo]);
         // 打开模态框
         // this.showOpenInfo(locationInfo);
 

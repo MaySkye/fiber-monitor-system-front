@@ -16,6 +16,7 @@ export class SiteAdminMxgraphComponent implements OnInit {
     // 每次渲染时，这段函数都会执行
 
     let mxGraphRoot = 'http://localhost:8080/javascript/examples/grapheditor/www/index.html';
+
     // 检查由表格跳转的url是否携带参数,若不携带则定位到起始页
     if (window.location.href.indexOf('?') == -1) {
       document.getElementById('mxgraph')["src"] = mxGraphRoot;
@@ -29,7 +30,9 @@ export class SiteAdminMxgraphComponent implements OnInit {
      * url-demo: http://localhost:8080/javascript/examples/grapheditor/www/index.html?site_name=郑州&site_level=1
      */
     let targetMxGraphUrl = mxGraphRoot + decodeURIComponent(params);
+    //alert(targetMxGraphUrl);
     document.getElementById('mxgraph')["src"] = targetMxGraphUrl;
+
   }
 
 }

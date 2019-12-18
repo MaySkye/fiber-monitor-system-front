@@ -169,6 +169,10 @@ export class StartupService {
                 text: '组态图工具',
                 link: '/site-admin/mxgraph',
               },
+              {
+                text: '站点操作工具',
+                link: '/site-admin/sitetools',
+              },
             ],
           },
           // ,{

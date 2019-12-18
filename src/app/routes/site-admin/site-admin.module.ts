@@ -3,11 +3,14 @@ import { SharedModule } from '@shared';
 import { SiteAdminRoutingModule } from './site-admin-routing.module';
 import { SiteAdminSiteListComponent } from './site-list/site-list.component';
 import { SiteAdminMxgraphComponent } from './mxgraph/mxgraph.component';
+import { SiteAdminSitetoolComponent } from './sitetool/sitetool.component';
 
 const COMPONENTS = [
   SiteAdminSiteListComponent,
   SiteAdminMxgraphComponent];
-const COMPONENTS_NOROUNT = [];
+const COMPONENTS_NOROUNT = [
+  
+  SiteAdminSitetoolComponent];
 
 @NgModule({
   imports: [

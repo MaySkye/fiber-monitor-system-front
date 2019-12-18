@@ -35,7 +35,9 @@ export class SiteAdminSiteListComponent implements OnInit {
           text: '查看监控图',
           type: 'link',
           click:function(data) {
-            window.location.assign("#/site-admin/mxgraph?site_name=" + data.name + "&site_level=" + data.level);
+            window.location.assign("#/site-admin/mxgraph?sitename=" + data.name + "&sitelevel=" + data.level);
+            /*window.open('http://localhost:8080/javascript/examples/grapheditor/www/index.html?sitename='
+              +data.name+"&sitelevel="+data.level);*/
           }
         },
       ],
@@ -48,8 +50,6 @@ export class SiteAdminSiteListComponent implements OnInit {
   ngOnInit() {
 
   }
-
-
   add() {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
