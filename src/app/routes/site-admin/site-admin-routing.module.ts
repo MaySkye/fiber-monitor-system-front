@@ -10,8 +10,8 @@ const routes: Routes = [
   { path: 'SiteListLevel1', component: SiteAdminSiteListComponent },
   { path: 'SiteListLevel2', component: SiteAdminSiteListComponent },//rebuld在哪？
   { path: 'SiteListLevel3', component: SiteAdminSiteListComponent },
-  { path: 'sitetool', component: SiteAdminSitetoolComponent },
-  { path: 'mxgraph', component: SiteAdminMxgraphComponent }];
+  { path: 'mxgraph', component: SiteAdminMxgraphComponent },
+  { path: 'sitetool', component: SiteAdminSitetoolComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

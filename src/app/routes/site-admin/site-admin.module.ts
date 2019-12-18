@@ -7,10 +7,12 @@ import { SiteAdminSitetoolComponent } from './sitetool/sitetool.component';
 
 const COMPONENTS = [
   SiteAdminSiteListComponent,
-  SiteAdminMxgraphComponent];
-const COMPONENTS_NOROUNT = [
-  
+  SiteAdminMxgraphComponent,
   SiteAdminSitetoolComponent];
+const COMPONENTS_NOROUNT = [
+
+
+  ];
 
 @NgModule({
   imports: [
