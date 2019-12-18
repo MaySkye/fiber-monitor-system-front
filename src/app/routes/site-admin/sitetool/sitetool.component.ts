@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 
@@ -7,20 +8,17 @@ import { _HttpClient } from '@delon/theme';
   templateUrl: './sitetool.component.html',
 })
 export class SiteAdminSitetoolComponent implements OnInit {
-  record: any = {};
+  
+  id = this.route.snapshot.params.id;
   i: any;
 
   constructor(
-    private modal: NzModalRef,
+    private route: ActivatedRoute,
     public msgSrv: NzMessageService,
     public http: _HttpClient
   ) { }
 
   ngOnInit(): void {
-    this.http.get(`/user/${this.record.id}`).subscribe(res => this.i = res);
-  }
-
-  close() {
-    this.modal.destroy();
+    this.http.get(`/user/${this.id}`).subscribe(res => this.i = res);
   }
 }
