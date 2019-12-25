@@ -19,6 +19,8 @@ export class SiteAdminSitetoolComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.http.get(`/user/${this.id}`).subscribe(res => this.i = res);
+    //this.http.get(`/user/${this.id}`).subscribe(res => this.i = res);
+    let url = 'http://localhost:8080/javascript/examples/grapheditor/www/sitemap.html';
+    document.getElementById('sitetool')["src"] = url;
   }
 }

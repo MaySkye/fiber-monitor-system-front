@@ -10,8 +10,6 @@ const COMPONENTS = [
   SiteAdminMxgraphComponent,
   SiteAdminSitetoolComponent];
 const COMPONENTS_NOROUNT = [
-
-
   ];
 
 @NgModule({
