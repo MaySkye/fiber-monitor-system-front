@@ -4,11 +4,13 @@ import { SiteAdminRoutingModule } from './site-admin-routing.module';
 import { SiteAdminSiteListComponent } from './site-list/site-list.component';
 import { SiteAdminMxgraphComponent } from './mxgraph/mxgraph.component';
 import { SiteAdminSitetoolComponent } from './sitetool/sitetool.component';
+import { SiteAdminMapcontrolComponent } from './mapcontrol/mapcontrol.component';
 
 const COMPONENTS = [
   SiteAdminSiteListComponent,
   SiteAdminMxgraphComponent,
-  SiteAdminSitetoolComponent];
+  SiteAdminSitetoolComponent,
+  SiteAdminMapcontrolComponent];
 const COMPONENTS_NOROUNT = [
   ];
 

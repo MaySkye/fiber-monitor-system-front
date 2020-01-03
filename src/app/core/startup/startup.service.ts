@@ -173,6 +173,10 @@ export class StartupService {
                 text: '站点操作工具',
                 link: '/site-admin/sitetool',
               },
+              {
+                text: '地图监控平台',
+                link: '/site-admin/mapcontrol',
+              },
             ],
           },
           // ,{
