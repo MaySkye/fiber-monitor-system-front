@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '@env/environment';
 
 declare var BMap: any;
 
@@ -22,6 +23,10 @@ export class MapdisplayMapviewComponent implements OnInit {
   private map1: any;
   private line = [];
   private timer; // 定时器
+  private url="http://localhost:8888/siteline/findPaintInfo";
+  private siteData;
+  private siteLineData;
+  private hashmap=new Map();
   constructor(private http: _HttpClient, public http1: HttpClient, private router: Router) {
   }
 
@@ -34,12 +39,12 @@ export class MapdisplayMapviewComponent implements OnInit {
     console.log(this.map1);
     // 地图样式
     this.mapStytle(this.map1);
-    // 创建站点
-    this.createLevel(this.map1, 1, 'red');
-    this.createLevel(this.map1, 2, 'blue');
-    this.createLevel(this.map1, 3, 'green');
-    // 绘制线路
-    this.createLine(this.map1);
+    this.getPaintInfo();
+
+    /*this.timer = setInterval(() => {
+      this.initclear();
+      this.getPaintInfo();
+    }, 50000);*/
   }
 
   // 弹出框事件
@@ -53,12 +58,68 @@ export class MapdisplayMapviewComponent implements OnInit {
     this.isVisible = false;
   }
 
+  getPaintInfo():void {
+    this.http.get(this.url).subscribe(data => {
+      if (data.length !== 0) {
+        console.log('data', data);
+        //let paintInfo = JSON.parse(data);
+        this.siteData = data[0]["siteInfo"];
+        this.siteLineData = data[0]["siteLinkInfo"];
+        console.log("siteData:" + this.siteData);
+        console.log("siteLineData:" + this.siteLineData);
+
+        //可以改变一下标志
+        this.createLevel(this.siteData, this.map1, 1, 'red');
+        this.createLevel(this.siteData, this.map1, 2, 'blue');
+        this.createLevel(this.siteData, this.map1, 3, 'green');
+        this.createLine(this.siteData, this.siteLineData, this.map1);
+      }
+    });
+  }
+
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnDestroy() {
+    console.log('销毁定时器');
+    // 销毁组件时清除定时器
+    clearInterval(this.timer);
+  }
+
+  private initclear(){
+    this.hashmap.clear();
+    this.siteLineData="";
+    this.siteData="";
+    //清除地图
+    var len =this.map1.getOverlays().length;
+    for (var i = len ;i>0; i--)
+    {
+      this.map1.removeOverlay(this.map1.getOverlays()[i]);
+    }
+  }
+
+  /** 构建地图样式 */
+  private mapStytle(map: any) {
+    this.http.get('assets/json/custom_map_config.json').subscribe(data => {
+      map.setMapStyleV2({ styleJson: data });
+    });
+  }
+
+  /** 创建坐标 */
+  private createLevel(siteData,map, level, color) {
+    let jsonArray = JSON.parse(siteData);
+    for (let i = 0; i < jsonArray.length; i++) {
+      if (jsonArray[i]["site_level"] == level) {
+        let x = jsonArray[i]["site_localx"];
+        let y = jsonArray[i]["site_localy"];
+        let point = new BMap.Point(x,y);
+        this.addMarker(map, point, color, jsonArray[i]);
+      }
+    }
+  }
   /** 创建标注 */
-  private addMarker(map, point: any, color: string, locationInfo: any) {
+  private addMarker(map, point, color, locationInfo) {
     // 设置marker图标为水滴
     const marker = new BMap.Marker(point,
-      {
-        // 指定Marker的icon属性为Symbol
+      {    // 指定Marker的icon属性为Symbol
         // @ts-ignore
         icon: new BMap.Symbol(BMap_Symbol_SHAPE_POINT, {
           scale: 1, // 图标缩放大小
@@ -73,124 +134,125 @@ export class MapdisplayMapviewComponent implements OnInit {
       '<div>' +
       '<div style="transform: translateX(-50%);' +
       'position: absolute;' +
-      'left: 50%;">' + locationInfo.name + '</div>' +
+      'left: 50%;">' + locationInfo["site_name"] + '</div>' +
       '</div>';
     const label = new BMap.Label(content, { offset: new BMap.Size(10, 25) });
-    label.setStyle({ border: 'none', padding: 0, fontWeight: 'bold', fontSize: '16px' }); // 去边框
+    label.setStyle({ border: 'none', padding: 0, fontWeight: 'bold', fontSize: '14px' }); // 去边框
     marker.setLabel(label);
+
     // 构建信息窗口
     const opw = this.openInfo(locationInfo, point, map);
     // 注册点击事件,弹出信息窗口
     marker.addEventListener('click', (e) => {
-        /*window.open('http://localhost:8080/javascript/examples/grapheditor/www/index.html?sitename='
-          +locationInfo.name+"&sitelevel="+locationInfo.level);*/
-        window.location.assign("#/site-admin/mxgraph?sitename=" + locationInfo.name + "&sitelevel=" + locationInfo.level);
-
-        //location.assign('http://localhost:8080/javascript/examples/grapheditor/www/index.html?sitename='
-        //  +locationInfo.name+"&sitelevel="+locationInfo.level);
-        //this.router.navigate(['/mapdisplay/StructureDiagram', locationInfo]);
-        // 打开模态框
-        // this.showOpenInfo(locationInfo);
-
+        map.openInfoWindow(opw, point); // 开启信息窗口
       },
     );
     // 鼠标移入时触发
     marker.addEventListener('mouseover', (e) => {
-        map.openInfoWindow(opw, point); // 开启信息窗口
       },
     );
     // 鼠标移出时触发
     marker.addEventListener('mouseout', e => {
-        // map.closeInfoWindow();
       },
     );
   }
-
-  // 创建连线
-  private addLine(map, line: any) {
-    // 创建弧线对象
-    //  const curve = new BMapLib.CurveLine(line, { strokeColor: '#000000', strokeWeight: 3, strokeOpacity: 0.5 });
-    // @ts-ignore
-    const sy = new BMap.Symbol(BMap_Symbol_SHAPE_BACKWARD_OPEN_ARROW, {
-      scale: 0.6, // 图标缩放大小
-      strokeColor: '#fff', // 设置矢量图标的线填充颜色
-      strokeWeight: '1', // 设置线宽
-    });
-    const icons = new BMap.IconSequence(sy, '10', '30');
-    // 创建折线
-    const polyline = new BMap.Polyline(line, { strokeColor: '#33FF00', strokeWeight: 3, strokeOpacity: 0.5, icons: [icons] });
-    map.addOverlay(polyline);
-   // setTimeout(polyline.setStrokeColor('red'), 5000);
-    this.timer = setInterval(() => {
-      const color = ['#33FF00', '#F7F709', '#F70909'];
-      const a = Math.floor(Math.random() * 3);
-      polyline.setStrokeColor(color[a]);
-      console.log('变色');
-    }, 2000);
-  }
-
-  // tslint:disable-next-line:use-life-cycle-interface
-  ngOnDestroy() {
-    console.log('销毁定时器');
-    // 销毁组件时清除定时器
-    clearInterval(this.timer);
-  }
-
-  /** 构建地图样式 */
-  private mapStytle(map: any) {
-    this.http.get('assets/json/custom_map_config.json').subscribe(data => {
-      map.setMapStyleV2({ styleJson: data });
-    });
-  }
-
-  /** 创建坐标 */
-  private createLevel(map, level, color) {
-    this.http.get('assets/json/site_info.json').subscribe(data => {
-      if (data.length <= 0) {
-        return;
-      }
-      for (const i of data) {
-        if (Number(i.level) === Number(level)) {
-          const point = new BMap.Point(i.longitude, i.Latitude);
-          this.addMarker(map, point, color, i);
-        }
-      }
-    });
-  }
-
-  // 创建连线
-  private createLine(map) {
-    this.http.get('assets/json/site_info.json').subscribe(data => {
-      const lineArray = [];
-      let j = 0;
-      for (const i of data) {
-        lineArray[j] = new BMap.Point(i.longitude, i.Latitude);
-        j++;
-      }
-      // 喀什- 西安
-      const line1 = [lineArray[7], lineArray[9], lineArray[17], lineArray[10], lineArray[19], lineArray[25], lineArray[0]];
-      // 环 西安-郑州
-      const line2 = [lineArray[0], lineArray[22], lineArray[20], lineArray[3], lineArray[15], lineArray[0]];
-      // 成都-三亚
-      const line3 = [lineArray[22], lineArray[11], lineArray[12], lineArray[23], lineArray[6]];
-      // 湛江-武汉
-      const line4 = [lineArray[23], lineArray[26], lineArray[13], lineArray[14], lineArray[4], lineArray[24], lineArray[2], lineArray[3]];
-      // 南京- 西安
-      const line5 = [lineArray[24], lineArray[16], lineArray[1], lineArray[21], lineArray[0]];
-      // 北京-哈尔滨
-      const line6 = [lineArray[1], lineArray[8], lineArray[5], lineArray[18]];
-      const line23 = [1, 1, 1, 1];
-      this.addLine(this.map1, line1);
-      this.addLine(this.map1, line2);
-      this.addLine(this.map1, line3);
-      this.addLine(this.map1, line4);
-      this.addLine(this.map1, line5);
-      this.addLine(this.map1, line6);
-    });
-  }
-
   /** 注册内容框的弹出事件 */
-  private openInfo(content: any, point: any, map: any) {
+  private openInfo(content, point, map) {
+    const opts = {
+      // width: 250,     // 信息窗口宽度
+      // height: 80,     // 信息窗口高度
+      title: '基本信息', // 信息窗口标题
+      enableMessage: true, // 设置允许信息窗发送短息
+      offset: new BMap.Size(0, -23),
+    };
+    const sname =content["site_name"];
+    const slevel =content["site_level"];
+    const surl="#/site-admin/mxgraph?sitename=" + sname + "&sitelevel=" +slevel;
+    const sContent = '<table align="center">' +
+      '<tbody>' +
+      '  <tr>' +
+      '    <td>名称：</td>' +
+      '    <td> ' + content["site_name"]+ '</td>' +
+      '  </tr>' +
+      '  <tr>' +
+      '    <td>站点级别：</td>' +
+      '    <td>' + content["site_level"]+ '级</td>' +
+      '  </tr>' +
+      '  <tr>' +
+      '    <td>编址码：</td>' +
+      '    <td>000000000000001</td>' +
+      '  </tr>' +
+      '  <tr>' +
+      '    <td>地址：</td>' +
+      '    <td> ' + content["site_name"] + '市xxxx区xxxx路</td>' +
+      '  </tr>' +
+      '  <tr>' +
+      //'    <td><a>详情</a></td>' +
+      '    <td>' +
+      '<a href="'+surl+'"> 查看监控图</a>'+
+      '</td>' +
+      '  </tr>' +
+      '</tbody>' +
+      '</table>';
+    const infoWindow = new BMap.InfoWindow(sContent, opts);  // 创建信息窗口对象
+    return infoWindow;
+    // map.openInfoWindow(infoWindow, point); // 开启信息窗口
+  }
+// 创建连线
+  private createLine(siteData,siteLineData,map) {
+    let siteArray = JSON.parse(siteData);
+    let lineArray = JSON.parse(siteLineData);
+    //let siteArray=siteData;
+    //let lineArray=siteLineData;
+    console.log("lineArray:"  + lineArray.length);
+    for(let a=0;a<siteArray.length;a++){
+      let xx = siteArray[a]["site_localx"];
+      let yy = siteArray[a]["site_localy"];
+      let temp_point=new BMap.Point(xx,yy);
+      this.hashmap.set(siteArray[a]["site_name"],temp_point);
+    }
+    for(let i=0;i<lineArray.length;i++){
+      console.log("point1:"  + lineArray[i]["point1"]);
+      console.log("point2:"  + lineArray[i]["point2"]);
+      let point1 = new BMap.Point();
+      let point2 = new BMap.Point();
+      let line = [];
+      point1=this.hashmap.get(lineArray[i]["point1"]);
+      point2=this.hashmap.get(lineArray[i]["point2"]);
+      //let linecase=lineArray[i];
+      line = [point1,point2];
+      this.addLine(map, line,lineArray[i]);
+      console.log("success" );
+    }
+  }
+  // 创建连线
+  private addLine(map, line,linecase) {
+    let color;
+    if(linecase["state"]=="正常"){
+      color='#33FF00';
+    }else{
+      color='red';
+    }
+    let polyline = new BMap.Polyline(line, { strokeColor:color, strokeWeight: 3, strokeOpacity: 0.5 });
+    map.addOverlay(polyline);
+    const opw = this.openLineInfo(linecase, polyline);
+    polyline.addEventListener('click', (e) => {
+        //console.log("color:"+polyline);
+        map.openInfoWindow(opw, e.point); // 开启信息窗口
+      },
+    );
+    // 鼠标移入时触发
+    polyline.addEventListener('mouseover', (e) => {
+        //map.openInfoWindow(opw, e.point); // 开启信息窗口
+      },
+    );
+    // 鼠标移出时触发
+    polyline.addEventListener('mouseout', e => {
+      },
+    );
+  }
+  /** 注册内容框的弹出事件 */
+  private openLineInfo(linecase, polyline) {
     const opts = {
       // width: 250,     // 信息窗口宽度
       // height: 80,     // 信息窗口高度
@@ -201,42 +263,40 @@ export class MapdisplayMapviewComponent implements OnInit {
     const sContent = '<table align="center">' +
       '<tbody>' +
       '  <tr>' +
-      '    <td>名称：</td>' +
-      '    <td> ' + content.name + '</td>' +
+      '    <td>线路名称：</td>' +
+      '    <td> ' + linecase["line_name"]+ '</td>' +
       '  </tr>' +
       '  <tr>' +
-      '    <td>站点级别：</td>' +
-      '    <td>' + content.level + '级</td>' +
+      '    <td>线路类型：</td>' +
+      '    <td>' + linecase["line_type"]+ '</td>' +
       '  </tr>' +
       '  <tr>' +
-      '    <td>编址码：</td>' +
-      '    <td>000000000000001</td>' +
+      '    <td>线路描述：</td>' +
+      '    <td>' + linecase["line_info"]+ '</td>' +
       '  </tr>' +
       '  <tr>' +
-      '    <td>地址：</td>' +
-      '    <td> ' + content.name + '市xxxx区xxxx路</td>' +
+      '    <td>线路长度：</td>' +
+      '    <td> ' + linecase["length"] + '</td>' +
       '  </tr>' +
-      // '  <tr>' +
-      // '    <td><a>详情</a></td>' +
-      // '    <td><a>查看组态图</a></td>' +
-      // '  </tr>' +
+      '  <tr>' +
+      '    <td>稳定度：</td>' +
+      '    <td> ' + linecase["stable"] + '</td>' +
+      '  </tr>' +
+      '  <tr>' +
+      '    <td>传输速率：</td>' +
+      '    <td> ' + linecase["transspeed"] + '</td>' +
+      '  </tr>' +
+      '  <tr>' +
+      '    <td>工作状态：</td>' +
+      '    <td> ' + linecase["state"] + '</td>' +
+      '  </tr>' +
+      /*'  <tr>' +
+      '    <td><a>发送报警信息</a></td>' +
+      '  </tr>' +*/
       '</tbody>' +
       '</table>';
     const infoWindow = new BMap.InfoWindow(sContent, opts);  // 创建信息窗口对象
     return infoWindow;
-    // map.openInfoWindow(infoWindow, point); // 开启信息窗口
   }
 
-  // 弹出事件
-  /*
-  private showOpenInfo(locationInfo: any): void {
-    // 显示弹出框
-    this.isVisible = true;
-    if (locationInfo !== null) {
-      this.modalTitle = locationInfo.name + '站点';
-      this.modalInfo = locationInfo;
-    }
-
-
-  }*/
 }

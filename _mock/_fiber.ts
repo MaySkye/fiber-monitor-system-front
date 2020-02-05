@@ -30,7 +30,7 @@ const DATA = [
     name: '武汉',
     longitude: '114.31561', // 经度
     Latitude: '30.596726', // 纬度
-    level: '2',
+    level: '1',
     count: '348',
   },
   {
