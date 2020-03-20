@@ -126,18 +126,14 @@ export class StartupService {
             text: '监控平台',
             icon: 'anticon-dashboard',
             children: [
-              // {
-              //   text: '首页',
-              //   link: '/dashboard',
-              // },
               {
-                text: '地域监控',
+                text: '态势监控',
                 link: '/mapdisplay/Monitor',
               },
-              // {
-              //   text: '测试地图',
-              //   link: '/mapdisplay/HeatMapVie',
-              // },
+              {
+                text: '地域监控',
+                link: '/site-admin/mapcontrol',
+              },
             ],
           }
           , {
@@ -166,24 +162,25 @@ export class StartupService {
                 ]
               },
               {
-                text: '组态图工具',
-                link: '/site-admin/mxgraph',
-              },
-              {
                 text: '站点操作工具',
                 link: '/site-admin/sitetool',
               },
-              {
-                text: '地图监控平台',
-                link: '/site-admin/mapcontrol',
-              },
             ],
           },
-          // ,{
-          //   text: '快捷菜单',
-          //   icon: { type: 'icon', value: 'rocket' },
-          //   shortcutRoot: true
-          // }
+          {
+             text: '组态图管理',
+             icon: { type: 'icon', value: 'rocket' },
+            children: [
+              {
+                text:"组态图信息",
+                link: '/site-admin/service-list',
+              },
+              {
+                text: '组态图监控',
+                link: '/site-admin/mxgraph',
+              },
+            ],
+          }
         ],
       },
     ]);

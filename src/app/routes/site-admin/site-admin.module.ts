@@ -5,12 +5,14 @@ import { SiteAdminSiteListComponent } from './site-list/site-list.component';
 import { SiteAdminMxgraphComponent } from './mxgraph/mxgraph.component';
 import { SiteAdminSitetoolComponent } from './sitetool/sitetool.component';
 import { SiteAdminMapcontrolComponent } from './mapcontrol/mapcontrol.component';
+import { SiteAdminServiceListComponent } from './service-list/service-list.component';
 
 const COMPONENTS = [
   SiteAdminSiteListComponent,
   SiteAdminMxgraphComponent,
   SiteAdminSitetoolComponent,
-  SiteAdminMapcontrolComponent];
+  SiteAdminMapcontrolComponent,
+  SiteAdminServiceListComponent];
 const COMPONENTS_NOROUNT = [
   ];
 

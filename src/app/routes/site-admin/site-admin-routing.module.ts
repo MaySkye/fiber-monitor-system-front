@@ -4,6 +4,7 @@ import { SiteAdminSiteListComponent } from './site-list/site-list.component';
 import { SiteAdminMxgraphComponent } from './mxgraph/mxgraph.component';
 import { SiteAdminSitetoolComponent } from './sitetool/sitetool.component';
 import { SiteAdminMapcontrolComponent } from './mapcontrol/mapcontrol.component';
+import { SiteAdminServiceListComponent } from './service-list/service-list.component';
 
 const routes: Routes = [
 
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'SiteListLevel3', component: SiteAdminSiteListComponent },
   { path: 'mxgraph', component: SiteAdminMxgraphComponent },
   { path: 'sitetool', component: SiteAdminSitetoolComponent },
-  { path: 'mapcontrol', component: SiteAdminMapcontrolComponent }];
+  { path: 'mapcontrol', component: SiteAdminMapcontrolComponent },
+  { path: 'service-list', component: SiteAdminServiceListComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
