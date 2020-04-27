@@ -20,7 +20,9 @@ export class SiteAdminMapcontrolComponent implements OnInit {
 
   ngOnInit(): void {
     //this.http.get(`/user/${this.id}`).subscribe(res => this.i = res);
-    let url = 'http://localhost:8080/javascript/examples/grapheditor/www/mapcontrol.html';
+    let url = 'http://localhost:8089/mxgraph/examples/grapheditor/www/mapcontrol.html';
+    //let url = ' http://localhost:8080/javascript/examples/grapheditor/www/mapcontrol.html';
+
     document.getElementById('mapcontrol')["src"] = url;
   }
 }

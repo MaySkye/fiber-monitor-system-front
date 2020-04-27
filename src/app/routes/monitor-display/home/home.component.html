@@ -1,0 +1,141 @@
+<page-header>
+  <!-- 设置按钮 -->
+  <div class="ww-setting-box">
+    <button nz-button (click)="autoExpand()" col="3" nzType="primary">自动延展</button>
+    <button nz-button
+            (click)="_homeSettingCmpt.toggleSettingWindow('160px',transitionDuration,margin,unit,dimension,alwaysMax)"
+            col="3">布局设置
+    </button>
+  </div>
+  <!-- 设置菜单 -->
+  <ww-mashup-setting #homeSetting [margin]="margin"
+                     [newDimension]="dimension"
+                     [unit]="unit"
+                     [transitionDuration]="transitionDuration"
+                     [alwaysMax]="alwaysMax"
+                     (applyArgs)="applyArgs($event)">
+  </ww-mashup-setting>
+</page-header>
+
+
+<div id="mashup">
+
+  <!-- mashup定位区域 -->
+  <div id="mashup-area" [style.transitionDuration]="transitionDuration + 'ms'">
+    <!-- 占位floor -->
+    <div class="mashup-floor" *ngFor="let floor of _map;let y = index"
+         [ngStyle]="{height: _blockHeight}">
+      <!-- 占位block -->
+      <div class="mashup-block" [ngStyle]="{width: _blockWidth}" *ngFor="let block of floor;let x = index;"
+           [id]="'[' + x + ', ' + y + ']'">
+      </div>
+    </div>
+  </div>
+
+  <!-- mashup组件区域 -->
+  <div id="mashup-content">
+
+    <!-- 提示框 -->
+    <div class="location-tip" id="location-tip"></div>
+
+    <!-- 监控组件 0 -->
+    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="总览" data-begin="[0, 0]" data-size="[5, 6]"
+                    id="siteAccount">
+      <ng-template #content>
+        <ww-card downText="30（个）" upText="基站数量">
+          <ng-template #body>
+            <div>基站使用状态周同比 &nbsp; 12%<span style="color:red;">&nbsp;▲</span></div>
+            <div>基站使用状态日同比 &nbsp; 11%<span style="color:green;">&nbsp;▼</span></div>
+          </ng-template>
+          <ng-template #footer>基站使用次数 12314（次）</ng-template>
+        </ww-card>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 监控组件 1 -->
+    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="总览" data-begin="[5, 0]" data-size="[5, 6]"
+                    id="visitorAccount">
+      <ng-template #content>
+        <ww-card upText="访问量" downText="81848">
+          <ng-template #body>
+            <ww-mini-area [data]="data"></ww-mini-area>
+          </ng-template>
+          <ng-template #footer>日访问量 1,2234</ng-template>
+        </ww-card>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 监控组件 2 -->
+    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="总览" data-begin="[10, 0]" data-size="[5, 6]"
+                    id="siteMaintenanceAccount">
+      <ng-template #content>
+        <ww-card upText="站点维护数量" downText="6560">
+          <ng-template #body>
+            <ww-mini-bar [data]="data"></ww-mini-bar>
+          </ng-template>
+          <ng-template #footer>转化率 60%</ng-template>
+        </ww-card>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 站点分布 -->
+    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="站点分布" data-begin="[0, 6]" data-size="[5, 14]"
+                    id="siteDistribution">
+      <ng-template #content>
+        <app-baidu-site-distribution></app-baidu-site-distribution>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 热力地图 -->
+    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="热力地图" data-begin="[5, 6]" data-size="[5, 14]"
+                    id="heatMap">
+      <ng-template #content>
+        <app-baidu-heat-map style="display:block; height: calc(100% + 20px)"></app-baidu-heat-map>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 主要干线传输稳定度 -->
+    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="主要干线传输稳定度" data-begin="[15, 0]" data-size="[5, 10]" [settingList]="['refreshDelay', 'errorColor']"
+                    id="mainWireStability">
+      <ng-template #content>
+        <ww-main-wire-stability #mainWireStability></ww-main-wire-stability>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 正在运行设备数量 -->
+    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="正在运行设备数量" data-begin="[15, 10]" data-size="[5, 10]"
+                    id="runningDeviceAccount">
+      <ng-template #content>
+        <ww-running-device-number></ww-running-device-number>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 集中故障告警（季度） -->
+    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="集中故障告警（季度）" data-begin="[10, 6]" data-size="[5, 7]"
+                    id="centralizedFaultWaring">
+      <ng-template #content>
+        <ww-centralized-fault-warning></ww-centralized-fault-warning>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 系统传输质量看板 -->
+    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="系统传输质量看板" data-begin="[10, 13]" data-size="[5, 7]"
+                    id="transmissionQualityBoard">
+      <ng-template #content>
+        <ww-transmission-quality-board></ww-transmission-quality-board>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 外部文件 -->
+    <ww-home-widget *ngFor="let key of _Object.keys(_localFileViews)" _draggable="true" [resize]="_resize"
+                    [ww-title]="_localFileViews[key].file.name" data-size="[0, 0]" [fileViewerId]="key"
+                    (close)="closeFileViewer($event)" [settingList]="_localFileViews[key].settingList"
+    >
+      <ng-template #content>
+        <ww-file-viewer #fileViewer [file]="_localFileViews[key].file"
+                        [fileViewerId]="_localFileViews[key].fileViewerId"></ww-file-viewer>
+      </ng-template>
+    </ww-home-widget>
+  </div>
+
+</div>

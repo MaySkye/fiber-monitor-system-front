@@ -217,6 +217,14 @@ const DATA = [
     level: '3',
     count: '248',
   },
+  {
+    id: '28',
+    name: '蓝田',
+    longitude: '109.32',
+    Latitude: '34.15',
+    level: '3',
+    count: '33',
+  }
 ];
 // 主页数据
 const listOfData = [

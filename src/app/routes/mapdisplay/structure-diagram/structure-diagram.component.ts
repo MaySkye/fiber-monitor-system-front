@@ -70,6 +70,7 @@ export class MapdisplayStructureDiagramComponent implements OnInit {
     this.getImage();
     // 获取右侧数据
     this.getRightInfo();
+
     // 构建定时器 10秒后刷新数据
     this.timer = setInterval(() => {
       this.getImage();
@@ -79,6 +80,8 @@ export class MapdisplayStructureDiagramComponent implements OnInit {
       this.aa = new Date().getTime();
       console.log('刷新', this.aa);
     }, 10000);
+
+
   }
 
   // tslint:disable-next-line:use-life-cycle-interface

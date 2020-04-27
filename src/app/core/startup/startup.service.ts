@@ -57,7 +57,7 @@ export class StartupService {
         return [langData, appData];
       }),
     ).subscribe(([langData, appData]) => {
-        // setting language data
+        // mashup-setting language data
         this.translate.setTranslation(this.i18n.defaultLang, langData);
         this.translate.setDefaultLang(this.i18n.defaultLang);
 
@@ -104,16 +104,8 @@ export class StartupService {
       name: `ng-alain`,
       description: `Ng-zorro admin panel front-end framework`,
     };
-    const user: any = {
-      name: 'Admin',
-      avatar: './assets/image/bupt.svg',
-      email: 'Admin@bupt.com',
-      token: '123456789',
-    };
     // 应用信息：包括站点名、描述、年份
     this.settingService.setApp(app);
-    // 用户信息：包括姓名、头像、邮箱地址
-    this.settingService.setUser(user);
     // ACL：设置权限为全量
     this.aclService.setFull(true);
     // 初始化菜单
@@ -128,7 +120,7 @@ export class StartupService {
             children: [
               {
                 text: '态势监控',
-                link: '/mapdisplay/Monitor',
+                link: '/monitor-display/home',
               },
               {
                 text: '地域监控',
@@ -184,6 +176,7 @@ export class StartupService {
         ],
       },
     ]);
+
     // 设置页面标题的后缀
     this.titleService.suffix = app.name;
 

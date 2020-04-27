@@ -41,6 +41,13 @@ export class SiteAdminSiteListComponent implements OnInit {
           }
         },
         {
+          text: '查看信息',
+          type: 'link',
+          click:function(data) {
+            //window.location.assign("#/site-admin/mxgraph?sitename=" + data.name + "&sitelevel=" + data.level);
+          }
+        },
+        {
           text: '删除',
           type: 'link',
           click:function(data) {

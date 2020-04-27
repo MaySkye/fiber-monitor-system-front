@@ -1,0 +1,13 @@
+<div class="dragEle" [draggable]="draggable">
+  <div class="resize-top-left" [hidden]="!resize"></div>
+  <div class="resize-bottom-right" [hidden]="!resize"></div>
+  <div class="dragEle-title">
+    <span class="title-font">{{title}}</span>
+    <span class="sm-btn" *ngIf="fileViewerId" (click)="close()">×</span>
+    <span class="sm-btn" *ngIf="settingList" (click)="setting.toggleSetting(settingHeight)">设置</span>
+  </div>
+  <div class="dragEle-content-withTitle" draggable="true">
+    <ng-template [ngTemplateOutlet]="_content"></ng-template>
+    <ww-widget-setting *ngIf="settingList" [settingList]="settingList" (params)="applyArgs($event)" #setting></ww-widget-setting>
+  </div>
+</div>

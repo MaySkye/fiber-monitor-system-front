@@ -21,14 +21,15 @@ const routes: Routes = [
     component: LayoutDefaultComponent,
     canActivate: [SimpleGuard],
     children: [
-      { path: '', redirectTo: 'mapdisplay/Monitor', pathMatch: 'full' },
+      { path: '', redirectTo: 'monitor-display/home', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent, data: { title: '首页' } },
       // 这就是模块懒加载功能的具体应用，当用户访问 /exception/** 路径的时候，才会加载对应的 SettingsModule 模块，这减少了应用启动时加载资源的大小。
       // { path: 'exception', loadChildren: './exception/exception.module#ExceptionModule' },
       // 地图模块
       { path: 'mapdisplay', loadChildren: './mapdisplay/mapdisplay.module#MapdisplayModule' },
       // 站点管理
-      { path: 'site-admin' , loadChildren: './site-admin/site-admin.module#SiteAdminModule'},
+      { path: 'site-admin', loadChildren: './site-admin/site-admin.module#SiteAdminModule' },
+      { path: 'monitor-display', loadChildren: './monitor-display/monitor-display.module#MonitorDisplayModule' },
       // 业务子模块
       // { path: 'widgets', loadChildren: './widgets/widgets.module#WidgetsModule' }
     ],

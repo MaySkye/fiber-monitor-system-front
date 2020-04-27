@@ -78,7 +78,6 @@ export class MapdisplayMainBarDataComponent implements OnInit {
         length: 0,
       },
     });
-
     chart.axis('value', {
       label: {
         textStyle: {

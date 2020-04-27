@@ -1,0 +1,39 @@
+<div class="home">
+  <div class="head" #headBox>
+    <!-- 图片-->
+    <div class="image" #imageBox
+         [ngStyle]="{width: image?imageBox.offsetHeight + 'px': '0'}">
+      <ng-template [ngTemplateOutlet]="image"></ng-template>
+    </div>
+    <!-- 标题 -->
+    <div class="title" #titleBox [ngStyle]="{
+      width: image?headBox.offsetWidth - imageBox.offsetWidth  + 'px': '100%',
+      paddingLeft: image? '5%': 'auto'
+    }">
+      <!-- 上标题 -->
+      <div class="title-up" #upBox [ngStyle]="{
+        fontSize: upBox.offsetHeight * 0.9 + 'px',
+        lineHeight: upBox.offsetHeight  + 'px'
+      }">{{upText}}</div>
+      <!-- 下标题 -->
+      <div class="title-down" #downBox [ngStyle]="{
+        fontSize: downBox.offsetHeight * 0.8 + 'px',
+        lineHeight: downBox.offsetHeight  + 'px'
+      }">{{downText}}</div>
+    </div>
+  </div>
+  <!-- 内容主体 -->
+  <div class="body" #bodyBox [ngStyle]="{
+    fontSize: bodyBox.offsetHeight * 0.32 + 'px',
+    lineHeight: bodyBox.offsetHeight * 0.5  + 'px'
+      }">
+    <ng-template [ngTemplateOutlet]="body"></ng-template>
+  </div>
+  <!-- 尾部 -->
+  <div class="footer" #footerBox [ngStyle]="{
+    fontSize: bodyBox.offsetHeight * 0.32 + 'px',
+    lineHeight: footerBox.offsetHeight  + 'px'
+      }">
+    <ng-template [ngTemplateOutlet]="footer"></ng-template>
+  </div>
+</div>

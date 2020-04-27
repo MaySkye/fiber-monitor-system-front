@@ -1,0 +1,112 @@
+// 拖动组件样式
+.dragEle {
+  border-radius: 2px;
+  background-color: white;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 15; /* 必须强行设置，可拖拽元素z-index值，才能正常拖拽 */
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  // 组件标题样式
+  @title-height: 2.5vh;
+  transition: all 0.1s;
+
+  .dragEle-title {
+    height: @title-height;
+    font-size: calc(@title-height * 0.6);
+    padding: 0 1%;
+    margin: 0;
+    line-height: @title-height;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid #E8E8E8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .title-font {
+      display: inline-block;
+      height: 100%;
+      width: 60%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .sm-btn {
+      float: right;
+      margin-left: 20px;
+      font-size: calc(@title-height * 0.6);
+      line-height: @title-height;
+
+      &:hover {
+        color: red;
+      }
+    }
+
+  }
+
+  // 组件内容样式，不带标题
+  .dragEle-content-noTitle {
+    margin: 0;
+    padding: 0;
+    float: left;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    min-height: 5px;
+    min-width: 5px;
+
+    .dragEle-expand {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  // 组件内容样式，有标题
+  .dragEle-content-withTitle {
+    .dragEle-content-noTitle();
+    height: calc(100% - @title-height);
+  }
+
+  // 重置大小图标
+  .resize-bottom-right {
+    position: absolute;
+    border: 5px solid rgba(0, 0, 0, 0);
+    border-right-color: gray;
+    border-bottom-color: gray;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    right: 0;
+    bottom: 0;
+    opacity:0;
+    cursor: se-resize;
+    z-index: 16;
+  }
+
+  // 重置大小图标
+  .resize-top-left {
+    position: absolute;
+    border: 5px solid rgba(0, 0, 0, 0);
+    border-left-color: gray;
+    border-top-color: gray;
+    width: 0px;
+    height: 0px;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    z-index: 16;
+  }
+}
+
+

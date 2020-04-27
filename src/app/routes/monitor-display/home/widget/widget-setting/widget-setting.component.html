@@ -1,0 +1,23 @@
+<div class="mxGraph-setting" #settingView>
+  <form>
+    <!-- 刷新延迟 -->
+    <label *ngIf="settingList.indexOf('refreshDelay') != -1">
+      刷新延迟/ms：<input type="number" name="refreshDelay" class="mxGraph-setting-input" required [(ngModel)]="refreshDelay">
+    </label>
+    <label *ngIf="settingList.indexOf('fontSize') != -1">
+      字体大小：<input type="number" class="mxGraph-setting-input" [(ngModel)]="fontSize" name="fontSize"/>
+    </label>
+    <!-- 颜色选择器 -->
+    <label *ngIf="settingList.indexOf('fontColor') != -1">
+      字体颜色：<input type="color" class="mxGraph-setting-input" [(ngModel)]="fontColor" name="fontColor"/>
+    </label>
+    <label *ngIf="settingList.indexOf('errorColor') != -1">
+      故障颜色：<input type="color" class="mxGraph-setting-input" [(ngModel)]="errorColor" name="errorColor"/>
+    </label>
+    <!-- 按钮组 -->
+    <div class="mxGraph-setting-btn-group">
+      <input type="submit" class="mxGraph-setting-button" value="提交" (click)="emitParams()">
+      <input type="button" class="mxGraph-setting-button" value="关闭" (click)="toggleSetting()">
+    </div>
+  </form>
+</div>

@@ -1,0 +1,54 @@
+@import '~@delon/theme/styles/default';
+
+.ww-setting-box {
+  position: absolute;
+  top: 110px;
+  right: 23px;
+}
+
+#mashup {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 100px);
+  // mashup定位区域
+  #mashup-area {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all;
+    opacity: 0;
+    // mashup-floor样式
+    .mashup-floor {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      // mashup-block定位块样式
+      .mashup-block {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+  // mashup组件区域
+  #mashup-content {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 100px);
+    // 辅助定位框样式
+    .location-tip {
+      box-shadow: 0px 0px 10px red;
+      position: absolute;
+      transition: all 0.05s;
+      z-index: 16;
+    }
+  }
+}
+
+
+

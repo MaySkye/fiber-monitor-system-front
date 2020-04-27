@@ -1,0 +1,38 @@
+<div #settingWindow  style="margin:0; height:0px; overflow:hidden; transition: all 200ms">
+  <!-- 设置表单 -->
+  <div [style.transitionDuration]="_transitionDuration + 'ms'">
+    <form nz-form #f="ngForm" se-container size="compact" gutter="24">
+      <se label="外边距" col="3">
+        <input type="text" nz-input required type="number" name="margin" [(ngModel)]="_margin"/>
+        <nz-select nzAllowClear nzPlaceHolder="Choose" name="unit" [(ngModel)]="_unit">
+          <nz-option [nzValue]="'px'" nzLabel="px"></nz-option>
+          <nz-option [nzValue]="'%'" nzLabel="%"></nz-option>
+        </nz-select>
+      </se>
+      <se label="维度" col="3">
+        <nz-select nzAllowClear nzPlaceHolder="Choose" [(ngModel)]="_newDimension" name="dimension">
+          <!-- 宫格布局 -->
+          <nz-option [nzValue]="3" nzLabel="3（标准宫格）"></nz-option>
+          <nz-option [nzValue]="4" nzLabel="4（标准宫格）"></nz-option>
+          <nz-option [nzValue]="5" nzLabel="5（标准宫格）"></nz-option>
+          <nz-option [nzValue]="6" nzLabel="6（标准宫格）"></nz-option>
+          <!-- 自定义布局 -->
+          <nz-option [nzValue]="10" nzLabel="10（自定义）"></nz-option>
+          <nz-option [nzValue]="15" nzLabel="15（自定义）"></nz-option>
+          <nz-option [nzValue]="25" nzLabel="25（自定义）"></nz-option>
+          <nz-option [nzValue]="40" nzLabel="40（自定义）"></nz-option>
+        </nz-select>
+        <label nz-checkbox [(ngModel)]="_alwaysMax" name="agree">
+          <span>延展时使用最佳布局</span>
+        </label>
+      </se>
+      <se label="过渡动画时长(ms)" col="3">
+        <input type="text" nz-input required type="number" [(ngModel)]="_transitionDuration" name="transitionDuration"/>
+      </se>
+      <se label="" col="1">
+        <button nz-button nzType="primary" [disabled]="f.invalid" (click)="applyMashupSetting()">设置</button>
+        <button nz-button (click)="toggleSettingWindow()">关闭</button>
+      </se>
+    </form>
+  </div>
+</div>

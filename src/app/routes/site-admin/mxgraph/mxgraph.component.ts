@@ -14,7 +14,7 @@ export class SiteAdminMxgraphComponent implements OnInit {
 
   ngOnInit() {
     // 每次渲染时，这段函数都会执行
-    let mxGraphRoot = 'http://localhost:8089/basic';
+    let mxGraphRoot = 'http://localhost:8089/xian';
     //let mxGraphRoot = 'http://localhost:8080/javascript/examples/grapheditor/www/index.html';
 
     // 检查由表格跳转的url是否携带参数,若不携带则定位到起始页

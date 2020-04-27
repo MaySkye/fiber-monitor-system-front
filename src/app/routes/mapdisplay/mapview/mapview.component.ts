@@ -69,9 +69,9 @@ export class MapdisplayMapviewComponent implements OnInit {
         console.log("siteLineData:" + this.siteLineData);
 
         //可以改变一下标志
-        this.createLevel(this.siteData, this.map1, 1, 'red');
-        this.createLevel(this.siteData, this.map1, 2, 'blue');
-        this.createLevel(this.siteData, this.map1, 3, 'green');
+        this.createLevel(this.siteData, this.map1, 1, 1.2);
+        this.createLevel(this.siteData, this.map1, 2, 0.9);
+        this.createLevel(this.siteData, this.map1, 3, 0.6);
         this.createLine(this.siteData, this.siteLineData, this.map1);
       }
     });
@@ -104,27 +104,36 @@ export class MapdisplayMapviewComponent implements OnInit {
   }
 
   /** 创建坐标 */
-  private createLevel(siteData,map, level, color) {
+  private createLevel(siteData,map, level, scale) {
     let jsonArray = JSON.parse(siteData);
     for (let i = 0; i < jsonArray.length; i++) {
       if (jsonArray[i]["site_level"] == level) {
         let x = jsonArray[i]["site_localx"];
         let y = jsonArray[i]["site_localy"];
         let point = new BMap.Point(x,y);
-        this.addMarker(map, point, color, jsonArray[i]);
+        let color;
+        if(jsonArray[i]["state"]=="故障"){
+          color='#FF0000';
+        }else if(jsonArray[i]["state"]=="异常"){
+          color='#FFA500';
+        }
+        else{
+          color='#006400';
+        }
+        this.addMarker(map, point, color, jsonArray[i],scale);
       }
     }
   }
   /** 创建标注 */
-  private addMarker(map, point, color, locationInfo) {
+  private addMarker(map, point, color, locationInfo,scale) {
     // 设置marker图标为水滴
     const marker = new BMap.Marker(point,
       {    // 指定Marker的icon属性为Symbol
         // @ts-ignore
         icon: new BMap.Symbol(BMap_Symbol_SHAPE_POINT, {
-          scale: 1, // 图标缩放大小
+          scale: scale, // 图标缩放大小
           fillColor: color, // 填充颜色
-          fillOpacity: 0.8, // 填充透明度
+          fillOpacity: 1, // 填充透明度
         }),
       });
     map.addOverlay(marker);
@@ -180,11 +189,11 @@ export class MapdisplayMapviewComponent implements OnInit {
       '  </tr>' +
       '  <tr>' +
       '    <td>编址码：</td>' +
-      '    <td>000000000000001</td>' +
+      '    <td>0010 0000 0000 0011</td>' +
       '  </tr>' +
       '  <tr>' +
       '    <td>地址：</td>' +
-      '    <td> ' + content["site_name"] + '市xxxx区xxxx路</td>' +
+      '    <td> ' + content["site_name"] + '市临潼区</td>' +
       '  </tr>' +
       '  <tr>' +
       //'    <td><a>详情</a></td>' +
@@ -228,10 +237,13 @@ export class MapdisplayMapviewComponent implements OnInit {
   // 创建连线
   private addLine(map, line,linecase) {
     let color;
-    if(linecase["state"]=="正常"){
-      color='#33FF00';
-    }else{
+    if(linecase["state"]=="故障"){
       color='red';
+    }else if(linecase["state"]=="异常"){
+      color='yellow';
+    }
+    else{
+      color='#33FF00';
     }
     let polyline = new BMap.Polyline(line, { strokeColor:color, strokeWeight: 3, strokeOpacity: 0.5 });
     map.addOverlay(polyline);
@@ -276,7 +288,7 @@ export class MapdisplayMapviewComponent implements OnInit {
       '  </tr>' +
       '  <tr>' +
       '    <td>线路长度：</td>' +
-      '    <td> ' + linecase["length"] + '</td>' +
+      '    <td> ' + linecase["length"] +'km'+ '</td>' +
       '  </tr>' +
       '  <tr>' +
       '    <td>稳定度：</td>' +

@@ -1,0 +1,26 @@
+<div [ngSwitch]="type" [style.backgroundColor]="type=='video'? 'black': ''" class="file-viewer-home">
+
+  <!-- 图片 -->
+  <img *ngSwitchCase="'image'" [src]="_content" class="file-viewer-image">
+
+  <!-- txt文本 -->
+  <div *ngSwitchCase="'text'" class="file-viewer-text">
+    <pre [ngStyle]="{fontSize:fontSize, color:fontColor, margin: '0px', height: '100%'}">{{_content}}</pre>
+  </div>
+
+  <!-- html -->
+  <html *ngSwitchCase="'html'" [innerHTML]="_content"></html>
+
+  <!-- 视频 -->
+  <video *ngSwitchCase="'video'" [src]="_content" controls autoplay
+         [ngStyle]="{width:_ele.nativeElement.parentNode.offsetWidth + 'px', height: _ele.nativeElement.parentNode.offsetHeight + 'px'}"></video>
+
+  <!-- 组态图 -->
+  <iframe *ngSwitchCase="'mxe-file'" frameborder="0"
+          src="http://localhost:8089/xian" #mxGraph></iframe>
+
+
+</div>
+
+
+
