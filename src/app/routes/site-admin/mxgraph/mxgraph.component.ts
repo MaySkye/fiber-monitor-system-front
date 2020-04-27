@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
+import { MxgraphAuthService } from '@shared/mxgraph/mxgraph-auth.service';
 
 
 @Component({
@@ -8,7 +9,8 @@ import { _HttpClient } from '@delon/theme';
 })
 export class SiteAdminMxgraphComponent implements OnInit {
 
-  constructor(private http: _HttpClient) {
+  constructor(private http: _HttpClient,
+              private mxGraphAuthService: MxgraphAuthService) {
   }
 
 
@@ -31,7 +33,9 @@ export class SiteAdminMxgraphComponent implements OnInit {
        */
       let targetMxGraphUrl = mxGraphRoot + decodeURIComponent(params);
       //alert(targetMxGraphUrl);
-      document.getElementById('mxgraph')["src"] = targetMxGraphUrl;
+      let iframe = document.getElementById('mxgraph');
+      iframe["src"] = targetMxGraphUrl;
+      this.mxGraphAuthService.doHandle(iframe);
     }
   }
 

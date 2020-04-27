@@ -7,6 +7,7 @@ import { DA_SERVICE_TOKEN, ITokenService, SocialOpenType, SocialService } from '
 import { ReuseTabService } from '@delon/abc';
 import { environment } from '@env/environment';
 import { StartupService } from '@core';
+import { MxgraphAuthService } from '@shared/mxgraph/mxgraph-auth.service';
 
 @Component({
   selector: 'passport-login',
@@ -40,6 +41,7 @@ export class UserLoginComponent implements OnDestroy {
     public http: _HttpClient,
     public msg: NzMessageService,
     private notification: NzNotificationService,
+    private mxGraphAuthService: MxgraphAuthService  // 王伟：mxgraph验证服务
   ) {
     this.form = fb.group({
       userName: [null, [Validators.required, Validators.minLength(4)]],
@@ -107,6 +109,7 @@ export class UserLoginComponent implements OnDestroy {
           // 设置用户Token信息
           this.tokenService.set(user);
           this.settingsService.setUser(user);
+          this.mxGraphAuthService.setAuthorization(res.id_token);
         } else {
           this.error = res.msg || '账号或密码错误';
           return;

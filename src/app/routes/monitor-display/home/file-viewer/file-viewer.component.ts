@@ -1,11 +1,12 @@
-import {Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
-import {_HttpClient} from '@delon/theme';
+import { Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { _HttpClient } from '@delon/theme';
+import { MxgraphAuthService } from '@shared/mxgraph/mxgraph-auth.service';
 
 @Component({
   selector: 'ww-file-viewer',
   templateUrl: './file-viewer.component.html',
-  styleUrls: ['./file-viewer.component.less']
+  styleUrls: ['./file-viewer.component.less'],
 })
 export class MonitorDisplayHomeFileViewerComponent {
 
@@ -24,63 +25,70 @@ export class MonitorDisplayHomeFileViewerComponent {
   private _content;  // 文件内容
   private _refreshDelay;  // 组态图刷新延迟
 
-  constructor(private http: _HttpClient, private _ele: ElementRef, private sanitizer: DomSanitizer) {
+  constructor(private http: _HttpClient,
+              private _ele: ElementRef,
+              private sanitizer: DomSanitizer,
+              private mxGraphAuthService: MxgraphAuthService) {
   }
 
 
   private load() {
     // image文件
     if (/image/.test(this.file.type)) {
-      this.type = "image";
+      this.type = 'image';
       this._reader.readAsDataURL(this.file);
       let that = this;
-      this._reader.onload = function () {
+      this._reader.onload = function() {
         that._content = that._reader.result;
-      }
+      };
     }
     // txt文件
     else if (/text\/plain/.test(this.file.type)) {
-      this.type = "text";
+      this.type = 'text';
       this._reader.readAsText(this.file);
       let that = this;
-      this._reader.onload = function () {
+      this._reader.onload = function() {
         that._content = that._reader.result;
       };
-      let size = "";
+      let size = '';
     }
     // html文件
     else if (/text\/html/.test(this.file.type)) {
-      this.type = "html";
+      this.type = 'html';
       this._reader.readAsText(this.file);
       let that = this;
-      this._reader.onload = function () {
+      this._reader.onload = function() {
         that._content = that._reader.result;
         that._content = that.sanitizer.bypassSecurityTrustHtml(that._content);
-      }
+      };
     }
     // 视频文件
     else if (/video/.test(this.file.type)) {
-      this.type = "video";
+      this.type = 'video';
       this._reader.readAsDataURL(this.file);
       let that = this;
-      this._reader.onload = function () {
+      this._reader.onload = function() {
         that._content = that._reader.result;
-      }
+      };
     }
     // .mxe组态图文件
     else if (/.*.mxe/.test(this.file.name)) {
-      this.type = "mxe-file";
+      this.type = 'mxe-file';
       this._reader.readAsText(this.file);
       let that = this;
-      this._reader.onload = function () {
+      this._reader.onload = ()=> {
         let message = {
-          type: "mxe-file",
-          content: that._reader.result
+          type: 'mxe-file',
+          content: that._reader.result,
         };
-        setTimeout(()=>{
-          that._mxGraphIframe.nativeElement.contentWindow.postMessage(message, '*');
-        },2000);
-      }
+        this.mxGraphAuthService.doHandle(that._mxGraphIframe.nativeElement);
+        window.onmessage = (event)=>{
+          if(event.data.type === 'loaded')
+          {
+            that._mxGraphIframe.nativeElement.contentWindow.postMessage(message, '*');
+          }
+        };
+      };
     }
     console.log(`The type is ${this.type}`);
   }
@@ -90,8 +98,8 @@ export class MonitorDisplayHomeFileViewerComponent {
   public applyMxGraphArgs(params) {
     let that = this;
     let message = {
-      type: "setting",
-      content: params
+      type: 'setting',
+      content: params,
     };
     this._mxGraphIframe.nativeElement.contentWindow.postMessage(message, '*');
   }
