@@ -15,7 +15,7 @@ export class MonitorDisplayHomeComponent implements OnInit {
 
   /* 这里是支持调节的参数 */
   private transitionDuration = 100;  // 过渡动画延时(s)
-  private dimension = 20;  // 宫格维度
+  private dimension = 3;  // 宫格维度
   private margin = 5;  // 外边距数值
   private unit = 'px'; // 外边距单位
   private alwaysMax = true;  // 始终为找到最佳布局而改变dimension

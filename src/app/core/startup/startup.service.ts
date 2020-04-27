@@ -122,10 +122,10 @@ export class StartupService {
                 text: '态势监控',
                 link: '/monitor-display/home',
               },
-              {
-                text: '地域监控',
-                link: '/site-admin/mapcontrol',
-              },
+              // {
+              //   text: '地域监控',
+              //   link: '/site-admin/mapcontrol',
+              // },
             ],
           }
           , {
