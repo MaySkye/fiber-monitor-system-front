@@ -204,6 +204,17 @@ export class MonitorDisplayHomeComponent implements OnInit {
             // 减去偏移量，并合理化位置，再返回
             let legalX = i - this._dragEventXGap < 0 ? 0 : (i - this._dragEventXGap > this.dimension - size[0] ? this.dimension - size[0] : i - this._dragEventXGap);
             let legalY = j - this._dragEventYGap < 0 ? 0 : (j - this._dragEventYGap > this.dimension - size[1] ? this.dimension - size[1] : j - this._dragEventYGap);
+            // 检测是否有位置摆放
+            for (let m = 0; m < size[0]; m++) {
+              for (let n = 0; n < size[1]; n++) {
+                // 检测超界或者有其他组件占位
+                if (!this._map[legalX + m] || !this._map[legalX + m][legalY + n] || !this._map[legalY + m][legalY + n].empty) {
+                  // console.log(this._map[beginBlockId[0] + i][beginBlockId[1] + j]);
+                  // console.log(`在${beginBlockId[0] + i}, ${beginBlockId[1] + j}放不下`);
+                  return this._dragEle.parentNode.dataset.begin;
+                }
+              }
+            }
             return `[${legalX}, ${legalY}]`;
             // return `[${i - this._dragEventXGap}, ${j - this._dragEventYGap}]`;
           }
@@ -363,6 +374,7 @@ export class MonitorDisplayHomeComponent implements OnInit {
       that._locationTip.style.display = 'none';
       // 获取定位的起始id
       let beginId = that.getDropBlockId(event, that._dragEle.parentNode.dataset.size);
+      console.warn(`在${beginId}处创建`);
       // 变换位置
       that.fillElement(beginId, that._dragEle);
     };
