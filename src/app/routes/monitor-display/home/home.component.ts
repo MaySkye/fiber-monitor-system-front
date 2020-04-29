@@ -208,9 +208,11 @@ export class MonitorDisplayHomeComponent implements OnInit {
             for (let m = 0; m < size[0]; m++) {
               for (let n = 0; n < size[1]; n++) {
                 // 检测超界或者有其他组件占位
-                if (!this._map[legalX + m] || !this._map[legalX + m][legalY + n] || !this._map[legalY + m][legalY + n].empty) {
+                if (!this._map[legalX + m] || !this._map[legalX + m][legalY + n] || !this._map[legalX + m][legalY + n].empty) {
                   // console.log(this._map[beginBlockId[0] + i][beginBlockId[1] + j]);
                   // console.log(`在${beginBlockId[0] + i}, ${beginBlockId[1] + j}放不下`);
+                  // console.error(`x坐标合法性：${this._map[legalX + m]!=null}，y坐标合法性${this._map[legalX + m][legalY + n]!=null}，有空位？：${this._map[legalY + m][legalY + n].empty}`);
+                  // console.error(`${legalX}, ${legalY}没有位置啦`);
                   return this._dragEle.parentNode.dataset.begin;
                 }
               }
@@ -531,24 +533,6 @@ export class MonitorDisplayHomeComponent implements OnInit {
       target = document.getElementById(target.toString());
     }
     return target;
-  }
-
-  // 显示占位区域块
-  private showBlock(block: any) {
-    // 获取目标元素DOM
-    block = this.getTargetDOMElement(block);
-    // 获取组件类指针
-    let that = this;
-    // 获取区域样式
-    let style: any = block.style;
-    // 区域占位
-    that._map[Math.trunc(block.id / that.dimension)][block.id % that.dimension].show = true;
-    style.display = "";
-    setTimeout(function () {
-      // 根据维度，回调长度、宽度
-      style.width = that._blockWidth;
-      style.height = that._blockHeight;
-    }, 0)
   }
 
   // 添加元素并拓展区域，返回是否可放置
