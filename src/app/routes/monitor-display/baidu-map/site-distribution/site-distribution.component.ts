@@ -24,6 +24,10 @@ export class MonitorDisplayBaiduMapSiteDistributionComponent{
   private map1: any;
   private line = [];
   private timer; // 定时器
+  private url="http://localhost:8888/siteline/findPaintInfo";
+  private siteData;
+  private siteLineData;
+  private hashmap=new Map();
   constructor(private http: _HttpClient, public http1: HttpClient, private router: Router) {
   }
 

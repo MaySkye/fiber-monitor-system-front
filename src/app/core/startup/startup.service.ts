@@ -119,13 +119,17 @@ export class StartupService {
             icon: 'anticon-dashboard',
             children: [
               {
-                text: '态势监控',
+                text: '大屏监控',
                 link: '/monitor-display/home',
               },
-              // {
-              //   text: '地域监控',
-              //   link: '/site-admin/mapcontrol',
-              // },
+              {
+                text: '态势监控',
+                link: '/mapdisplay/Monitor',
+              },
+               {
+                text: '地域监控',
+                link: '/site-admin/mapcontrol',
+               },
             ],
           }
           , {
