@@ -15,8 +15,8 @@ declare var BMap: any;
   styleUrls: ['./site-distribution.component.less']
 })
 export class MonitorDisplayBaiduMapSiteDistributionComponent{
-  thisX = '108.94704';
-  thisY = '34.347507';
+  thisX = '108';
+  thisY = '33';
   // 弹出框
   isVisible = false;
   modalTitle: any;
@@ -33,6 +33,9 @@ export class MonitorDisplayBaiduMapSiteDistributionComponent{
 
   private ngOnInit(): void {
     this.initMap();
+    setTimeout(()=>{
+      this.initMap();
+    },1000);
     this.timer = setInterval(() => {
       this.initclear();
       this.getPaintInfo();
