@@ -158,6 +158,10 @@ export class StartupService {
                 ]
               },
               {
+                text: '链路信息',
+                link: '/site-admin/siteline-list',
+              },
+              {
                 text: '站点操作工具',
                 link: '/site-admin/sitetool',
               },

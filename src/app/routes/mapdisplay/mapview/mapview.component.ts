@@ -23,12 +23,11 @@ export class MapdisplayMapviewComponent implements OnInit {
   private map1: any;
   private line = [];
   private timer; // 定时器
-  private url="http://localhost:8888/siteline/findPaintInfo";
+  private url=environment.SERVER_URL+'siteline/findPaintInfo';
   private siteData;
   private siteLineData;
   private hashmap=new Map();
-  constructor(private http: _HttpClient, public http1: HttpClient, private router: Router) {
-  }
+  constructor(private http: _HttpClient, public http1: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.map1 = new BMap.Map('map1'); // 创建地图实例

@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { _HttpClient, ModalHelper } from '@delon/theme';
 import { STColumn, STComponent } from '@delon/abc';
 import { SFSchema } from '@delon/form';
+import { environment } from '@env/environment';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,7 +13,8 @@ import { SFSchema } from '@delon/form';
 })
 export class SiteAdminSiteListComponent implements OnInit {
   // url = `/fiber/site/level-list`;
-  url = '/fiber/site?level=' + location.href.substring(location.href.lastIndexOf('level=') + 6);
+  //url = '/fiber/site?level=' + location.href.substring(location.href.lastIndexOf('level=') + 6);
+  url=environment.SERVER_URL+'site/findsiteinfo/'+location.href.substring(location.href.lastIndexOf('level=') + 6);
   searchSchema: SFSchema = {
     properties: {
       name: {
@@ -22,10 +26,11 @@ export class SiteAdminSiteListComponent implements OnInit {
   @ViewChild('st') st: STComponent;
   columns: STColumn[] = [
     // {index: 'id'},
-    { title: '站点名称', index: 'name' },
-    { title: '经度', index: 'longitude' },
-    { title: '维度', index: 'Latitude' },
-    { title: '站点级别', index: 'level' },
+    { title: '站点名称', index: 'site_name' },
+    { title: '经度', index: 'site_localx' },
+    { title: '维度', index: 'site_localy' },
+    { title: '站点级别', index: 'site_level' },
+    { title: '站点类型', index: 'site_type' },
     {
       title: '动作',
       buttons: [
@@ -58,8 +63,7 @@ export class SiteAdminSiteListComponent implements OnInit {
     },
   ];
 
-  constructor(private http: _HttpClient, private modal: ModalHelper) {
-  }
+  constructor(private http: _HttpClient, public http1: HttpClient, private router: Router) {}
 
   ngOnInit() {
 

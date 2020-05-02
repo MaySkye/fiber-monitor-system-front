@@ -25,9 +25,9 @@ export class MonitorDisplayBaiduMapHeatMapComponent implements OnInit {
       centerAndZoom: {     // 设置中心点和缩放级别
         lng: 108.94704,   // 经度
         lat: 37.347507,    // 纬度
-        zoom: 5,           // 缩放级别
+        zoom: 4,           // 缩放级别
       },
-      minZoom: 5,  // 最小缩放级别的地图
+      minZoom: 4,  // 最小缩放级别的地图
       maxZoom: 10, // 最大缩放级别的地图
       disableDragging: false, // 是否禁用地图拖动功能
       enableScrollWheelZoom: true, // 是否启用滚轮进行缩放功能

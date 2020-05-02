@@ -98,22 +98,28 @@ export const USERS = {
     phone: '你猜-你猜你猜猜猜',
   },
   'POST /user/avatar': 'ok',
+
   'POST /login/account': (req: MockRequest) => {
     const data = req.body;
-    if (!(data.userName === 'admin' || data.userName === 'user') || data.password !== 'admin') {
+    /*if (!(data.userName === 'admin' || data.userName === 'user') || data.password !== 'admin') {
       return { msg: `默认用户名密码为admin/admin` };
+    }*/
+    if(data!=null){
+      return {
+        msg: 'ok',
+        user: {
+          token: data.token,
+          name: data.userName,
+          email: data.email,
+          id: data.id,
+          time: +new Date(),
+        },
+      };
+    }else{
+      return { msg: `用户信息为空` };
     }
-    return {
-      msg: 'ok',
-      user: {
-        token: '123456789',
-        name: data.userName,
-        email: `${data.userName}@bupt.com`,
-        id: 10000,
-        time: +new Date(),
-      },
-    };
   },
+
   'POST /register': {
     msg: 'ok',
   },
