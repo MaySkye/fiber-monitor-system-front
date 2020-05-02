@@ -40,7 +40,7 @@ export class SiteAdminSiteListComponent implements OnInit {
           text: '查看监控图',
           type: 'link',
           click:function(data) {
-            window.location.assign("#/site-admin/mxgraph?sitename=" + data.name + "&sitelevel=" + data.level);
+            window.location.assign("#/site-admin/mxgraph?sitename=" + data.site_name + "&sitelevel=" + data.site_level);
             /*window.open('http://localhost:8080/javascript/examples/grapheditor/www/index.html?sitename='
               +data.name+"&sitelevel="+data.level);*/
           }
@@ -49,14 +49,14 @@ export class SiteAdminSiteListComponent implements OnInit {
           text: '查看信息',
           type: 'link',
           click:function(data) {
-            //window.location.assign("#/site-admin/mxgraph?sitename=" + data.name + "&sitelevel=" + data.level);
+            //window.location.assign("#/site-admin/mxgraph?sitename=" + data.site_name + "&sitelevel=" + data.site_level);
           }
         },
         {
           text: '删除',
           type: 'link',
           click:function(data) {
-            //window.location.assign("#/site-admin/mxgraph?sitename=" + data.name + "&sitelevel=" + data.level);
+            //window.location.assign("#/site-admin/mxgraph?sitename=" + data.name + "&sitelevel=" + data.site_level);
           }
         },
       ],
