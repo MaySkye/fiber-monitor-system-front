@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
-import { _HttpClient } from '@delon/theme';
+import { _HttpClient, ModalHelper } from '@delon/theme';
 import { SFSchema } from '@delon/form';
 import { STColumn, STComponent } from '@delon/abc';
 import { environment } from '@env/environment';
@@ -13,12 +13,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SiteAdminServiceListComponent implements OnInit {
 
-  // url = `/fiber/site/level-list`;
-  //url = '/fiber/site?level=' + location.href.substring(location.href.lastIndexOf('level=') + 6);
+  constructor(private http: _HttpClient, private modal: ModalHelper,private router: Router) { }
   url=environment.SERVER_URL+'mongo/getAllServiceInfo';
   searchSchema: SFSchema = {
     properties: {
-      name: {
+      file_name: {
         type: 'string',
         title: '文件名称',
       },
@@ -36,26 +35,38 @@ export class SiteAdminServiceListComponent implements OnInit {
         {
           text: '查看监控图',
           type: 'link',
-          click:function(data) {
-            //window.location.assign("#/site-admin/mxgraph?fileId=" + data.site_name + "&sitelevel=" + data.site_level);
+          click:(data)=> {
+            //window.location.assign("#/site-admin/mxgraph?sitename=" + data.site_name);
+            let queryParams: NavigationExtras = {
+              queryParams: { 'md5': data.md5 ,
+                'sitename': data.site_name
+              }
+            };
+            this.router.navigate(['/site-admin/mxgraph'], queryParams);
           }
         },
         {
           text: '删除',
           type: 'link',
-          click:function(data) {
-            //window.location.assign("#/site-admin/mxgraph?sitename=" + data.name + "&sitelevel=" + data.level);
-            /*window.open('http://localhost:8080/javascript/examples/grapheditor/www/index.html?sitename='
-              +data.name+"&sitelevel="+data.level);*/
+          click:(data)=> {
+            this.delete(data.md5);
           }
         },
       ],
     },
   ];
 
-  constructor(private http: _HttpClient, public http1: HttpClient, private router: Router) {}
+
 
   ngOnInit(): void {
     //this.http.get(`/user/${this.id}`).subscribe(res => this.i = res);
+  }
+
+  delete(md5: any) {
+    let deleteUrl = environment.SERVER_URL+'mongo/delete/'+md5;
+    console.log("md5: "+md5);
+    this.http.get(deleteUrl).subscribe((res:any) => {
+        this.st.reload();
+    });
   }
 }

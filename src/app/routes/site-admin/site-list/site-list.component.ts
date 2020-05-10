@@ -4,7 +4,7 @@ import { STColumn, STComponent } from '@delon/abc';
 import { SFSchema } from '@delon/form';
 import { environment } from '@env/environment';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 
 
 @Component({
@@ -14,12 +14,15 @@ import { Router } from '@angular/router';
 export class SiteAdminSiteListComponent implements OnInit {
   // url = `/fiber/site/level-list`;
   //url = '/fiber/site?level=' + location.href.substring(location.href.lastIndexOf('level=') + 6);
-  url=environment.SERVER_URL+'site/findsiteinfo/'+location.href.substring(location.href.lastIndexOf('level=') + 6);
+  //constructor(private http: _HttpClient, public http1: HttpClient, private router: Router) {}
+  constructor(private http: _HttpClient, private modal: ModalHelper, private router: Router) { }
+  isVisible = false;
+  url = environment.SERVER_URL+'site/findsiteinfo/'+location.href.substring(location.href.lastIndexOf('level=') + 6);
   searchSchema: SFSchema = {
     properties: {
-      name: {
+      site_name: {
         type: 'string',
-        title: '站点名称',
+        title: '站点名称'
       },
     },
   };
@@ -28,25 +31,29 @@ export class SiteAdminSiteListComponent implements OnInit {
     // {index: 'id'},
     { title: '站点名称', index: 'site_name' },
     { title: '经度', index: 'site_localx' },
-    { title: '维度', index: 'site_localy' },
+    { title: '纬度', index: 'site_localy' },
     { title: '站点级别', index: 'site_level' },
     { title: '站点类型', index: 'site_type' },
     {
       title: '动作',
       buttons: [
-        // { text: '查看', click: (item: any) => `/form/${item.id}` },
+        //{ text: '查看', click: (item: any) => `/form/${item.id}` },
         // { text: '编辑', type: 'static', component: FormEditComponent, click: 'reload' },
         {
           text: '查看监控图',
           type: 'link',
-          click:function(data) {
-            window.location.assign("#/site-admin/mxgraph?sitename=" + data.site_name + "&sitelevel=" + data.site_level);
-            /*window.open('http://localhost:8080/javascript/examples/grapheditor/www/index.html?sitename='
-              +data.name+"&sitelevel="+data.level);*/
+          click:(data) =>{
+            //window.location.assign("#/site-admin/mxgraph?sitename=" + data.site_name + "&sitelevel=" + data.site_level);
+            let queryParams: NavigationExtras = {
+              queryParams: { 'sitename': data.site_name,
+                               'sitelevel': data.site_level
+              }
+            };
+            this.router.navigate(['/site-admin/mxgraph'], queryParams);
           }
         },
         {
-          text: '查看信息',
+          text: '查看编辑',
           type: 'link',
           click:function(data) {
             //window.location.assign("#/site-admin/mxgraph?sitename=" + data.site_name + "&sitelevel=" + data.site_level);
@@ -55,23 +62,38 @@ export class SiteAdminSiteListComponent implements OnInit {
         {
           text: '删除',
           type: 'link',
-          click:function(data) {
-            //window.location.assign("#/site-admin/mxgraph?sitename=" + data.name + "&sitelevel=" + data.site_level);
+          click :(data) =>{
+             this.delete(data.site_name);
           }
         },
       ],
     },
   ];
 
-  constructor(private http: _HttpClient, public http1: HttpClient, private router: Router) {}
-
-  ngOnInit() {
-
-  }
+  ngOnInit() {   }
   add() {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
+  }
+
+   delete(sitename: any) {
+    let deleteUrl = environment.SERVER_URL+'site/delete/'+sitename;
+    this.http.get(deleteUrl).subscribe((res:any) => {
+      if(res == 0){
+        console.log("删除成功");
+        this.st.reload();
+      }else{
+        console.log("删除失败");
+      }
+    });
+  }
+
+  // 弹出框事件
+  handleOk(){
+    alert("delete");
+    console.log('Button ok clicked!');
+    this.isVisible = true;
   }
 
 }

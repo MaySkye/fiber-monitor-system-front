@@ -162,7 +162,7 @@ export class StartupService {
                 link: '/site-admin/siteline-list',
               },
               {
-                text: '站点操作工具',
+                text: '站点添加工具',
                 link: '/site-admin/sitetool',
               },
             ],

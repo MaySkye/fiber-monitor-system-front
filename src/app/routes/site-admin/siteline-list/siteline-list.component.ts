@@ -16,7 +16,7 @@ export class SiteAdminSitelineListComponent implements OnInit {
   url=environment.SERVER_URL+'siteline/findall';
   searchSchema: SFSchema = {
     properties: {
-      name: {
+      line_name: {
         type: 'string',
         title: '链路名称',
       },
@@ -32,7 +32,7 @@ export class SiteAdminSitelineListComponent implements OnInit {
       title: '动作',
       buttons: [
         {
-          text: '查看信息',
+          text: '查看编辑',
           type: 'link',
           click:function(data) {
             //window.location.assign("#/site-admin/mxgraph?sitename=" + data.name + "&sitelevel=" + data.level);
@@ -41,15 +41,16 @@ export class SiteAdminSitelineListComponent implements OnInit {
         {
           text: '删除',
           type: 'link',
-          click:function(data) {
+          click:(data)=> {
             //window.location.assign("#/site-admin/mxgraph?sitename=" + data.name + "&sitelevel=" + data.level);
+            this.delete(data.line_name);
           }
         },
       ],
     },
   ];
 
-  constructor(private http: _HttpClient, public http1: HttpClient, private router: Router) {}
+  constructor(private http: _HttpClient, private modal: ModalHelper) { }
 
   ngOnInit() {
 
@@ -58,5 +59,17 @@ export class SiteAdminSitelineListComponent implements OnInit {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
+  }
+
+  delete(name: any) {
+    let deleteUrl = environment.SERVER_URL+'siteline/delete/'+name;
+    this.http.get(deleteUrl).subscribe((res:any) => {
+      if(res == 0){
+        console.log("删除成功");
+        this.st.reload();
+      }else{
+        console.log("删除失败");
+      }
+    });
   }
 }

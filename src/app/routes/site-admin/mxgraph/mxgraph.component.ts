@@ -24,7 +24,7 @@ export class SiteAdminMxgraphComponent implements OnInit {
     let iframe = document.getElementById('mxgraph');
     // 检测query参数
     this.router.queryParams.subscribe((data) => {
-      if(data.sitename && data.sitelevel)
+      if( (data.sitename && data.sitelevel) || (data.md5 && data.sitename))
       {
         // 若携带参数，则获取站点参数
         let params = window.location.href.substring(window.location.href.lastIndexOf('?'));

@@ -6,6 +6,7 @@ import { SiteAdminSitetoolComponent } from './sitetool/sitetool.component';
 import { SiteAdminMapcontrolComponent } from './mapcontrol/mapcontrol.component';
 import { SiteAdminServiceListComponent } from './service-list/service-list.component';
 import { SiteAdminSitelineListComponent } from './siteline-list/siteline-list.component';
+import { SiteAdminTestComponent } from './test/test.component';
 
 const routes: Routes = [
 
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'sitetool', component: SiteAdminSitetoolComponent },
   { path: 'mapcontrol', component: SiteAdminMapcontrolComponent },
   { path: 'service-list', component: SiteAdminServiceListComponent },
-  { path: 'siteline-list', component: SiteAdminSitelineListComponent }];
+  { path: 'siteline-list', component: SiteAdminSitelineListComponent },
+  { path: 'test', component: SiteAdminTestComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
