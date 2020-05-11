@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SiteAdminSitelineListComponent implements OnInit {
 
-  url=environment.SERVER_URL+'siteline/findall';
+  url = environment.SERVER_URL + 'siteline/findall';
   searchSchema: SFSchema = {
     properties: {
       line_name: {
@@ -34,42 +34,54 @@ export class SiteAdminSitelineListComponent implements OnInit {
         {
           text: '查看编辑',
           type: 'link',
-          click:function(data) {
+          click: function(data) {
             //window.location.assign("#/site-admin/mxgraph?sitename=" + data.name + "&sitelevel=" + data.level);
-          }
+          },
         },
         {
           text: '删除',
           type: 'link',
-          click:(data)=> {
+          click: (data) => {
             //window.location.assign("#/site-admin/mxgraph?sitename=" + data.name + "&sitelevel=" + data.level);
             this.delete(data.line_name);
-          }
+          },
         },
       ],
     },
   ];
 
-  constructor(private http: _HttpClient, private modal: ModalHelper) { }
+  constructor(private http: _HttpClient, private modal: ModalHelper) {
+  }
 
   ngOnInit() {
-
-  }
-  add() {
-    // this.modal
-    //   .createStatic(FormEditComponent, { i: { id: 0 } })
-    //   .subscribe(() => this.st.reload());
+    this.getData();
   }
 
   delete(name: any) {
-    let deleteUrl = environment.SERVER_URL+'siteline/delete/'+name;
-    this.http.get(deleteUrl).subscribe((res:any) => {
-      if(res == 0){
-        console.log("删除成功");
-        this.st.reload();
-      }else{
-        console.log("删除失败");
+    let deleteUrl = environment.SERVER_URL + 'siteline/delete/' + name;
+    this.http.get(deleteUrl).subscribe((res: any) => {
+      if (res == 0) {
+        console.log('删除成功');
+        this.getData();
+      } else {
+        console.log('删除失败');
       }
+    });
+  }
+
+  // 王伟加入搜索功能
+  private data;
+
+  private getData() {
+    this.http.get(this.url).subscribe((res) => {
+      this.data = res == null ? [] : res;
+    });
+  }
+
+  private search(event) {
+    let searchField = 'line_name';
+    this.data = this.data.filter((record) => {
+      return record[searchField].indexOf(event[searchField]) != -1;
     });
   }
 }

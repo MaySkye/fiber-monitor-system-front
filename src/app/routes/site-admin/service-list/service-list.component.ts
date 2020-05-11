@@ -66,7 +66,7 @@ export class SiteAdminServiceListComponent implements OnInit {
     let deleteUrl = environment.SERVER_URL+'mongo/delete/'+md5;
     console.log("md5: "+md5);
     this.http.get(deleteUrl).subscribe((res:any) => {
-        this.st.reload();
+      this.getData();
     });
   }
 
