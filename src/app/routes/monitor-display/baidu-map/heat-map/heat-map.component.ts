@@ -12,7 +12,6 @@ import { HeatmapPoint } from 'angular2-baidu-map/types/Heatmap';
 })
 export class MonitorDisplayBaiduMapHeatMapComponent implements OnInit {
   public opts: MapOptions;
-  // tslint:disable-next-line:new-parens
   public data: HeatmapData = new class implements HeatmapData {
     data: Array<HeatmapPoint>;
     max: number;
@@ -21,6 +20,13 @@ export class MonitorDisplayBaiduMapHeatMapComponent implements OnInit {
 
 
   constructor(private http: _HttpClient) {
+    this.initMap();
+  }
+
+  ngOnInit(): void {
+  }
+
+  private initMap(){
     this.opts = {
       centerAndZoom: {     // 设置中心点和缩放级别
         lng: 108.94704,   // 经度
@@ -96,11 +102,11 @@ export class MonitorDisplayBaiduMapHeatMapComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {
-  }
-
   public heatmapLoaded(heatmap: BHeatmap): void {
-    console.log('heatmap loaded', heatmap);
+    setTimeout(()=>{
+      heatmap._map.centerAndZoom(new BMap.Point(108.94704, 37.347507), 4);
+    },1000);
+    console.error('heatmap loaded', heatmap);
   }
 
   // 构建数据
