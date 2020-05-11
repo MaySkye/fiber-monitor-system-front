@@ -70,7 +70,9 @@ export class SiteAdminSiteListComponent implements OnInit {
     },
   ];
 
-  ngOnInit() {   }
+  ngOnInit() {
+    this.getData();
+  }
   add() {
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
@@ -96,6 +98,20 @@ export class SiteAdminSiteListComponent implements OnInit {
     this.isVisible = true;
   }
 
+  // 王伟加入搜索功能
+  private data;
+  private getData(){
+    this.http.get(this.url).subscribe((res)=>{
+      this.data = res==null?[]:res;
+    });
+  }
+  private search(event)
+  {
+    let searchField = 'site_name';
+    this.data = this.data.filter((record)=>{
+      return record[searchField].indexOf(event[searchField]) != -1;
+    });
+  }
 }
 
 
