@@ -7,7 +7,6 @@ import { SiteAdminSitetoolComponent } from './sitetool/sitetool.component';
 import { SiteAdminMapcontrolComponent } from './mapcontrol/mapcontrol.component';
 import { SiteAdminServiceListComponent } from './service-list/service-list.component';
 import { SiteAdminSitelineListComponent } from './siteline-list/siteline-list.component';
-import { SiteAdminTestComponent } from './test/test.component';
 
 const COMPONENTS = [
   SiteAdminSiteListComponent,
@@ -15,8 +14,7 @@ const COMPONENTS = [
   SiteAdminSitetoolComponent,
   SiteAdminMapcontrolComponent,
   SiteAdminServiceListComponent,
-  SiteAdminSitelineListComponent,
-  SiteAdminTestComponent];
+  SiteAdminSitelineListComponent];
 const COMPONENTS_NOROUNT = [
   ];
 

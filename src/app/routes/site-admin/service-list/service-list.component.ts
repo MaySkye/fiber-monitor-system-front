@@ -17,7 +17,7 @@ export class SiteAdminServiceListComponent implements OnInit {
   url=environment.SERVER_URL+'mongo/getAllServiceInfo';
   searchSchema: SFSchema = {
     properties: {
-      file_name: {
+      site_name: {
         type: 'string',
         title: '文件名称',
       },
@@ -59,14 +59,28 @@ export class SiteAdminServiceListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //this.http.get(`/user/${this.id}`).subscribe(res => this.i = res);
+    this.getData();
   }
 
   delete(md5: any) {
     let deleteUrl = environment.SERVER_URL+'mongo/delete/'+md5;
     console.log("md5: "+md5);
     this.http.get(deleteUrl).subscribe((res:any) => {
-        this.st.reload();
+      this.getData();
+    });
+  }
+
+  private data;
+  private getData(){
+    this.http.get(this.url).subscribe((res)=>{
+      this.data = res==null?[]:res;
+    });
+  }
+  private search(event)
+  {
+    let searchField = 'site_name';
+    this.data = this.data.filter((record)=>{
+      return record[searchField].indexOf(event[searchField]) != -1;
     });
   }
 }

@@ -15,14 +15,16 @@ export class SiteAdminSiteListComponent implements OnInit {
   // url = `/fiber/site/level-list`;
   //url = '/fiber/site?level=' + location.href.substring(location.href.lastIndexOf('level=') + 6);
   //constructor(private http: _HttpClient, public http1: HttpClient, private router: Router) {}
-  constructor(private http: _HttpClient, private modal: ModalHelper, private router: Router) { }
+  constructor(private http: _HttpClient, private modal: ModalHelper, private router: Router) {
+  }
+
   isVisible = false;
-  url = environment.SERVER_URL+'site/findsiteinfo/'+location.href.substring(location.href.lastIndexOf('level=') + 6);
+  url = environment.SERVER_URL + 'site/findsiteinfo/' + location.href.substring(location.href.lastIndexOf('level=') + 6);
   searchSchema: SFSchema = {
     properties: {
       site_name: {
         type: 'string',
-        title: '站点名称'
+        title: '站点名称',
       },
     },
   };
@@ -37,65 +39,76 @@ export class SiteAdminSiteListComponent implements OnInit {
     {
       title: '动作',
       buttons: [
-        //{ text: '查看', click: (item: any) => `/form/${item.id}` },
-        // { text: '编辑', type: 'static', component: FormEditComponent, click: 'reload' },
         {
           text: '查看监控图',
           type: 'link',
-          click:(data) =>{
+          click: (data) => {
             //window.location.assign("#/site-admin/mxgraph?sitename=" + data.site_name + "&sitelevel=" + data.site_level);
-            let queryParams: NavigationExtras = {
-              queryParams: { 'sitename': data.site_name,
-                               'sitelevel': data.site_level
-              }
+            let queryParams: NavigationExtras = {
+              queryParams: {
+                'sitename': data.site_name,
+                'sitelevel': data.site_level,
+              },
             };
-            this.router.navigate(['/site-admin/mxgraph'], queryParams);
-          }
+            this.router.navigate(['/site-admin/mxgraph'], queryParams);
+          },
         },
         {
           text: '查看编辑',
           type: 'link',
-          click:function(data) {
+          click: function(data) {
             //window.location.assign("#/site-admin/mxgraph?sitename=" + data.site_name + "&sitelevel=" + data.site_level);
-          }
+          },
         },
         {
           text: '删除',
           type: 'link',
-          click :(data) =>{
-             this.delete(data.site_name);
-          }
+          click: (data) => {
+            this.delete(data.site_name);
+          },
         },
       ],
     },
   ];
 
-  ngOnInit() {   }
-  add() {
-    // this.modal
-    //   .createStatic(FormEditComponent, { i: { id: 0 } })
-    //   .subscribe(() => this.st.reload());
+  ngOnInit() {
+    this.getData();
   }
 
-   delete(sitename: any) {
-    let deleteUrl = environment.SERVER_URL+'site/delete/'+sitename;
-    this.http.get(deleteUrl).subscribe((res:any) => {
-      if(res == 0){
-        console.log("删除成功");
-        this.st.reload();
-      }else{
-        console.log("删除失败");
+  delete(sitename: any) {
+    let deleteUrl = environment.SERVER_URL + 'site/delete/' + sitename;
+    this.http.get(deleteUrl).subscribe((res: any) => {
+      if (res == 0) {
+        console.log('删除成功');
+        this.getData();
+      } else {
+        console.log('删除失败');
       }
     });
   }
 
   // 弹出框事件
-  handleOk(){
-    alert("delete");
+  handleOk() {
+    alert('delete');
     console.log('Button ok clicked!');
     this.isVisible = true;
   }
 
+  // 王伟加入搜索功能
+  private data;
+
+  private getData() {
+    this.http.get(this.url).subscribe((res) => {
+      this.data = res == null ? [] : res;
+    });
+  }
+
+  private search(event) {
+    let searchField = 'site_name';
+    this.data = this.data.filter((record) => {
+      return record[searchField].indexOf(event[searchField]) != -1;
+    });
+  }
 }
 
 
