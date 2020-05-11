@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 
-
+declare var BMap: any;
 
 import { BHeatmap, HeatmapData, HeatmapOptions, MapOptions } from 'angular2-baidu-map';
 import { HeatmapPoint } from 'angular2-baidu-map/types/Heatmap';
@@ -102,11 +102,12 @@ export class MonitorDisplayBaiduMapHeatMapComponent implements OnInit {
     };
   }
 
-  public heatmapLoaded(heatmap: BHeatmap): void {
+  public heatmapLoaded(heatmap: any): void {
+    // BHeatmap
     setTimeout(()=>{
       heatmap._map.centerAndZoom(new BMap.Point(108.94704, 37.347507), 4);
     },1000);
-    console.error('heatmap loaded', heatmap);
+    console.log('heatmap loaded', heatmap);
   }
 
   // 构建数据
