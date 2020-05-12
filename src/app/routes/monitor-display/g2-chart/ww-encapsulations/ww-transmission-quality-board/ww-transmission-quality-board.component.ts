@@ -194,6 +194,7 @@ export class MonitorDisplayG2ChartWwEncapsulationsWwTransmissionQualityBoardComp
       width: that._ele.nativeElement.parentNode.offsetWidth,
       height: that._ele.nativeElement.parentNode.offsetHeight,
       padding: ['10%','5%','25%','10%'], // 上右下左
+      forceFit: false
     });
     that._chart.source(data);
     that._chart.axis('date', {

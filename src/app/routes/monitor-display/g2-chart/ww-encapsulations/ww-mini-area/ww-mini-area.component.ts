@@ -44,7 +44,7 @@ export class MonitorDisplayG2ChartWwEncapsulationsWwMiniAreaComponent implements
     let that = this;
     that._chart = new G2.Chart({
       container: that._ele.nativeElement.firstChild,
-      forceFit: true,
+      forceFit: false,
       height: that._ele.nativeElement.parentNode.offsetHeight,
       padding: ['2%', '0', '20%', '0']
     });

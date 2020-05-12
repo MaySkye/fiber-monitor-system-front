@@ -59,7 +59,8 @@ export class MonitorDisplayG2ChartWwEncapsulationsCentralizedFaultWarningCompone
       container: that._ele.nativeElement.firstChild,
       padding: ['2%','30%','2%','10%'],
       height: that._ele.nativeElement.parentNode.offsetHeight,
-      width: that._ele.nativeElement.parentNode.offsetWidth
+      width: that._ele.nativeElement.parentNode.offsetWidth,
+      forceFit:false
     });
     that._chart.source(data);
     that._chart.axis(false);

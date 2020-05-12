@@ -1,5 +1,5 @@
-import {Component, OnInit, Input, ElementRef} from '@angular/core';
-import {_HttpClient} from '@delon/theme';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { _HttpClient } from '@delon/theme';
 
 @Component({
   selector: 'ww-mini-bar',
@@ -7,7 +7,7 @@ import {_HttpClient} from '@delon/theme';
 })
 export class MonitorDisplayG2ChartWwEncapsulationsWwMiniBarComponent implements OnInit {
 
-  @Input("data") data;
+  @Input('data') data;
   private watchInterval = 1000;  // 监听间隔ms
 
   private _chart;
@@ -24,7 +24,7 @@ export class MonitorDisplayG2ChartWwEncapsulationsWwMiniBarComponent implements 
     // 获取组件类指针
     let that = this;
     // 监听容器尺寸变化
-    setInterval(function () {
+    setInterval(function() {
       let newSize = ' ' + that._ele.nativeElement.parentNode.offsetWidth + that._ele.nativeElement.parentNode.offsetHeight;
       if (that._oriSize != newSize) {
         // 重新赋值新尺寸
@@ -46,25 +46,26 @@ export class MonitorDisplayG2ChartWwEncapsulationsWwMiniBarComponent implements 
       container: that._ele.nativeElement.firstChild,
       width: that._ele.nativeElement.parentNode.offsetWidth,
       height: that._ele.nativeElement.parentNode.offsetHeight,
-      padding: ['2%', '0%', '20%', '0%']
+      padding: ['2%', '0%', '20%', '0%'],
+      forceFit: false,
     });
     that._chart.source(that.data);
     that._chart.scale({
       value: {
-        min: 0
+        min: 0,
       },
       time: {
-        type: 'time'
-      }
+        type: 'time',
+      },
     });
     that._chart.axis('value', {
       label: null,
       grid: null,
-      tickLine: null
+      tickLine: null,
     }).axis('time', {
       label: null,
       grid: null,
-      tickLine: null
+      tickLine: null,
     });
     that._chart.tooltip({
       'g2-tooltip': {
@@ -78,15 +79,15 @@ export class MonitorDisplayG2ChartWwEncapsulationsWwMiniBarComponent implements 
         transition: 'top 200ms,left 200ms',
         height: '90x',
         width: '200px',
-        boxShadow: '0 0 5px black'
+        boxShadow: '0 0 5px black',
       }, // 设置 tooltip 的 css 样式
       'g2-tooltip-title': {
         margin: '0',
-        lineHeight: '18px'
+        lineHeight: '18px',
       },
       'g2-tooltip-list': {
         margin: '0',
-        lineHeight: '18px'
+        lineHeight: '18px',
       },
       containerTpl: '<div class="g2-tooltip">'
         + '<span style="background-color:#188FFF; width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:4px;"></span>'
@@ -95,7 +96,7 @@ export class MonitorDisplayG2ChartWwEncapsulationsWwMiniBarComponent implements 
         + '</div>',
       itemTpl: '<li data-index={index}>' +
         '数目：{value}' +
-        '</li>'
+        '</li>',
     });
     that._chart.interval().position('time*value').size(that._ele.nativeElement.parentNode.offsetWidth * 0.02);
     that._chart.render();

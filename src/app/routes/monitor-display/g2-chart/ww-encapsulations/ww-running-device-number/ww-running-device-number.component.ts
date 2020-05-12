@@ -81,7 +81,7 @@ export class MonitorDisplayG2ChartWwEncapsulationsWwRunningDeviceNumberComponent
 
     that._chart = new G2.Chart({
       container: that._ele.nativeElement.firstChild,
-      forceFit: true,
+      forceFit: false,
       height: that._ele.nativeElement.parentNode.offsetHeight,
       padding: 'auto',
     });
