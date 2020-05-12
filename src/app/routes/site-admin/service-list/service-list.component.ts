@@ -19,7 +19,7 @@ export class SiteAdminServiceListComponent implements OnInit {
     properties: {
       site_name: {
         type: 'string',
-        title: '文件名称',
+        title: '站点名称',
       },
     },
   };
