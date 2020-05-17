@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient, ModalHelper } from '@delon/theme';
 import { environment } from '@env/environment';
 import { SFSchema } from '@delon/form';
 import { STColumn, STComponent } from '@delon/abc';
-import { HttpClient } from '@angular/common/http';
+import {SiteAdminSitelineEditDialogComponent} from './siteline-edit-dialog/siteline-edit-dialog.component';
 
 @Component({
   selector: 'app-site-admin-siteline-list',
@@ -34,8 +32,12 @@ export class SiteAdminSitelineListComponent implements OnInit {
         {
           text: '查看编辑',
           type: 'link',
-          click: function(data) {
-            //window.location.assign("#/site-admin/mxgraph?sitename=" + data.name + "&sitelevel=" + data.level);
+          click: (data) => {
+            this.modal.create(SiteAdminSitelineEditDialogComponent, {
+              record: data,
+            }).subscribe(() => {
+              this.getData();
+            });
           },
         },
         {

@@ -7,6 +7,8 @@ import { SiteAdminSitetoolComponent } from './sitetool/sitetool.component';
 import { SiteAdminMapcontrolComponent } from './mapcontrol/mapcontrol.component';
 import { SiteAdminServiceListComponent } from './service-list/service-list.component';
 import { SiteAdminSitelineListComponent } from './siteline-list/siteline-list.component';
+import { SiteAdminSiteEditDialogComponent } from './site-list/site-edit-dialog/site-edit-dialog.component';
+import { SiteAdminSitelineEditDialogComponent } from './siteline-list/siteline-edit-dialog/siteline-edit-dialog.component';
 
 const COMPONENTS = [
   SiteAdminSiteListComponent,
@@ -16,7 +18,9 @@ const COMPONENTS = [
   SiteAdminServiceListComponent,
   SiteAdminSitelineListComponent];
 const COMPONENTS_NOROUNT = [
-  ];
+  
+  SiteAdminSiteEditDialogComponent,
+  SiteAdminSitelineEditDialogComponent];
 
 @NgModule({
   imports: [

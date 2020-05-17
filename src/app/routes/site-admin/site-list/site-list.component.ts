@@ -3,8 +3,8 @@ import { _HttpClient, ModalHelper } from '@delon/theme';
 import { STColumn, STComponent } from '@delon/abc';
 import { SFSchema } from '@delon/form';
 import { environment } from '@env/environment';
-import { HttpClient } from '@angular/common/http';
 import { NavigationExtras, Router } from '@angular/router';
+import { SiteAdminSiteEditDialogComponent } from './site-edit-dialog/site-edit-dialog.component';
 
 
 @Component({
@@ -15,7 +15,9 @@ export class SiteAdminSiteListComponent implements OnInit {
   // url = `/fiber/site/level-list`;
   //url = '/fiber/site?level=' + location.href.substring(location.href.lastIndexOf('level=') + 6);
   //constructor(private http: _HttpClient, public http1: HttpClient, private router: Router) {}
-  constructor(private http: _HttpClient, private modal: ModalHelper, private router: Router) {
+  constructor(private http: _HttpClient,
+              private modal: ModalHelper,
+              private router: Router) {
   }
 
   isVisible = false;
@@ -43,21 +45,24 @@ export class SiteAdminSiteListComponent implements OnInit {
           text: '查看监控图',
           type: 'link',
           click: (data) => {
-            //window.location.assign("#/site-admin/mxgraph?sitename=" + data.site_name + "&sitelevel=" + data.site_level);
             let queryParams: NavigationExtras = {
               queryParams: {
                 'sitename': data.site_name,
                 'sitelevel': data.site_level,
               },
             };
-            this.router.navigate(['/site-admin/mxgraph'], queryParams);
+            this.router.navigate(['/site-admin/mxgraph'], queryParams).then();
           },
         },
         {
           text: '查看编辑',
           type: 'link',
-          click: function(data) {
-            //window.location.assign("#/site-admin/mxgraph?sitename=" + data.site_name + "&sitelevel=" + data.site_level);
+          click: (data) => {
+            this.modal.create(SiteAdminSiteEditDialogComponent, {
+              record: data,
+            }).subscribe(() => {
+              this.getData();
+            });
           },
         },
         {

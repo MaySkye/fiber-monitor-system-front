@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <div class="modal-title">编辑链路信息</div>
+</div>
+<!-- 以下为表单区域 -->
+<form nz-form #f="ngForm" se-container size="compact" col='6' gutter="24">
+  <se label="链路ID" line col="1">{{record.line_id}}</se>
+  <se label="名称" required col="2">
+    <input [(ngModel)]="record.line_name" name="site_name" nz-input required type="text"/>
+  </se>
+  <se label="级别" required col="2">
+    <nz-select [(ngModel)]="record.line_type" name="site_type" nzAllowClear required nzPlaceHolder="Choose">
+      <nz-option [nzValue]="'重点'" nzLabel="重点"></nz-option>
+      <nz-option [nzValue]="'普通'" nzLabel="普通"></nz-option>
+    </nz-select>
+  </se>
+  <se label="起点" col="2">
+    <input [(ngModel)]="record.point1" name="point1" nz-input type="text"/>
+  </se>
+  <se label="终点" col="2">
+    <input [(ngModel)]="record.point2" name="point2" nz-input type="text"/>
+  </se>
+  <se label="链路长度" col="1">
+    <input [(ngModel)]="record.length" name="site_address" nz-input type="text"/>
+  </se>
+  <se label="链路说明" col="1">
+    <textarea [(ngModel)]="record.line_info" name="site_info" nz-input rows="3" placeholder="请输入站点说明"></textarea>
+  </se>
+  <se col="1">
+    <button nz-button nzType="primary" [disabled]="f.invalid" (click)="save()">保存</button>
+    <button nz-button nzType="primary" (click)="close()" style="background-color: #fa541c; border: 1px solid #fa541c;">关闭</button>
+  </se>
+</form>
+
