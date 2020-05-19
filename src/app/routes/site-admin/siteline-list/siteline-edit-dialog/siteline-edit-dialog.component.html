@@ -7,7 +7,7 @@
   <se label="名称" required col="2">
     <input [(ngModel)]="record.line_name" name="site_name" nz-input required type="text"/>
   </se>
-  <se label="级别" required col="2">
+  <se label="类型" required col="2">
     <nz-select [(ngModel)]="record.line_type" name="site_type" nzAllowClear required nzPlaceHolder="Choose">
       <nz-option [nzValue]="'重点'" nzLabel="重点"></nz-option>
       <nz-option [nzValue]="'普通'" nzLabel="普通"></nz-option>

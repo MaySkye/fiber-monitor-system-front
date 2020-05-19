@@ -36,13 +36,13 @@ export class SiteAdminServiceListComponent implements OnInit {
           text: '查看监控图',
           type: 'link',
           click:(data)=> {
-            //window.location.assign("#/site-admin/mxgraph?sitename=" + data.site_name);
-            let queryParams: NavigationExtras = {
+            window.location.assign("#/site-admin/mxgraph?md5="+data.md5+"&sitename=" + data.site_name);
+           /* let queryParams: NavigationExtras = {
               queryParams: { 'md5': data.md5 ,
                 'sitename': data.site_name
               }
             };
-            this.router.navigate(['/site-admin/mxgraph'], queryParams);
+            this.router.navigate(['/site-admin/mxgraph'], queryParams);*/
           }
         },
         {

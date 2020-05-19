@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzMessageService, NzModalRef } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
+import { environment } from '@env/environment';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-site-admin-siteline-edit-dialog',
@@ -21,10 +23,23 @@ export class SiteAdminSitelineEditDialogComponent implements OnInit {
   }
 
   save() {
-    console.log('表单数据是：', this.form.value);
+    let url = environment.SERVER_URL + 'siteline/updateSiteLine';
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    }
+    this.http.post(url, this.record, httpOptions).subscribe((res) => {
+      console.log(res)
+      if(res==1){
+        this.msgSrv.success('保存成功');
+        this.modal.close(true);
+      }else{
+        this.msgSrv.success('保存失败');
+      }
+    });
+    /*console.log('表单数据是：', this.form.value);
     console.log('当前选中记录是', this.record);
     this.msgSrv.success('保存成功');
-    this.modal.close(true);
+    this.modal.close(true);*/
   }
 
   close() {
