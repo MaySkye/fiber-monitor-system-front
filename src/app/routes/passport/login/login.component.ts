@@ -41,7 +41,7 @@ export class UserLoginComponent implements OnDestroy {
     public http: _HttpClient,
     public msg: NzMessageService,
     private notification: NzNotificationService,
-    private mxGraphAuthService: MxgraphAuthService  // 王伟：mxgraph验证服务
+    private mxGraphAuthService: MxgraphAuthService,  // 王伟：mxgraph验证服务
   ) {
     this.form = fb.group({
       userName: [null, [Validators.required, Validators.minLength(4)]],
@@ -93,7 +93,7 @@ export class UserLoginComponent implements OnDestroy {
       .post(environment.SERVER_URL + 'api/authenticate?_allow_anonymous=true', {
         username: this.userName.value,
         password: this.password.value,
-        pemFileContent: this.pemFileContent
+        pemFileContent: this.pemFileContent,
       })
       .subscribe((res: any) => {
         // 清空路由复用信息
@@ -104,7 +104,7 @@ export class UserLoginComponent implements OnDestroy {
             name: this.userName.value,
             email: `${this.userName.value}@bupt.com`,
             avatar: './assets/image/bupt.svg',
-            time: +new Date()
+            time: +new Date(),
           };
           // 设置用户Token信息
           this.tokenService.set(user);
@@ -119,11 +119,28 @@ export class UserLoginComponent implements OnDestroy {
           // tslint:disable-next-line:no-non-null-assertion
           let url = this.tokenService.referrer!.url || '/';
           if (url.includes('/passport')) url = '/';
-          this.router.navigateByUrl(url);
+          this.router.navigateByUrl(url).then(r => {});
         });
-      }, error1 => {
-        this.error = '登录错误';
-        return;
+      }, err => {
+        let { error } = err;
+        // 如果有响应
+        if (error) {
+          switch (error.status) {
+            case 400:
+              this.error = error.title;
+              break;
+            case 401:
+              this.error = '账户密码错误';
+              break;
+            default:
+              this.error = "未知错误！";
+              break;
+          }
+        }
+        // 如果无响应
+        else {
+          this.error = '请检查网络连接！';
+        }
       });
   }
 
