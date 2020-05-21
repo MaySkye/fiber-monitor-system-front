@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
-import { MxgraphAuthService } from '@shared/mxgraph/mxgraph-auth.service';
+import { WwCommonService } from '@shared/mxgraph/ww-common-service';
 
 @Component({
   selector: 'app-site-admin-sitetool',
@@ -17,7 +17,7 @@ export class SiteAdminSitetoolComponent implements OnInit {
     private route: ActivatedRoute,
     public msgSrv: NzMessageService,
     public http: _HttpClient,
-    private mxGraphAuthService: MxgraphAuthService,
+    private mxGraphAuthService: WwCommonService,
   ) {
   }
 
@@ -27,6 +27,6 @@ export class SiteAdminSitetoolComponent implements OnInit {
     //let url = ' http://localhost:8080/javascript/examples/grapheditor/www/sitemap.html';
     let iframe = document.getElementById('sitetool');
     iframe['src'] = url;
-    this.mxGraphAuthService.doHandle(iframe);
+    this.mxGraphAuthService.doHandleForMxGraph(iframe);
   }
 }

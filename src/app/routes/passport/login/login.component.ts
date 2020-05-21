@@ -7,7 +7,7 @@ import { DA_SERVICE_TOKEN, ITokenService, SocialOpenType, SocialService } from '
 import { ReuseTabService } from '@delon/abc';
 import { environment } from '@env/environment';
 import { StartupService } from '@core';
-import { MxgraphAuthService } from '@shared/mxgraph/mxgraph-auth.service';
+import { WwCommonService } from '@shared/mxgraph/ww-common-service';
 
 @Component({
   selector: 'passport-login',
@@ -41,7 +41,7 @@ export class UserLoginComponent implements OnDestroy {
     public http: _HttpClient,
     public msg: NzMessageService,
     private notification: NzNotificationService,
-    private mxGraphAuthService: MxgraphAuthService,  // 王伟：mxgraph验证服务
+    private mxGraphAuthService: WwCommonService,  // 王伟：mxgraph验证服务
   ) {
     this.form = fb.group({
       userName: [null, [Validators.required, Validators.minLength(4)]],

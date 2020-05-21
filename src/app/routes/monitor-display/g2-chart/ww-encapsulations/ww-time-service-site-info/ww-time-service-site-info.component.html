@@ -1,0 +1,12 @@
+<ww-card downText="426（个）" upText="授时子站数量">
+  <ng-template #image>
+    <object data="assets/image/mashup/站点.svg" type="image/svg+xml" style="width: 100%; height: 100%;"></object>
+  </ng-template>
+  <ng-template #body>
+<!--    <div>基站使用状态周同比 &nbsp; 12%<span style="color:red;">&nbsp;▲</span></div>-->
+<!--    <div>基站使用状态日同比 &nbsp; 11%<span style="color:green;">&nbsp;▼</span></div>-->
+    <div>正常运行数量 <span class="info-value" [ngStyle]="{color: siteWorkNumber.style}">{{siteWorkNumber.value}}（个）</span></div>
+    <div>正常运行时间 <span class="info-value">{{runtime}}</span></div>
+  </ng-template>
+  <ng-template #footer>故障率 <span class="info-value" [ngStyle]="{color: siteErrorRate.style}">{{siteErrorRate.value}}</span></ng-template>
+</ww-card>

@@ -1,7 +1,22 @@
 // 拖动组件样式
+.theme-title-blue {
+  background-image: linear-gradient(45deg, #e6f7ff 0%, #F2FBFF 100%) !important;
+
+  .dragEle-title {
+    background-image: linear-gradient(0deg, #1890ff 0%, #69c0ff 100%) !important;
+  }
+}
+
+.theme-title-gray {
+  background-image: linear-gradient(45deg, #f0f0f0 0%, #f5f5f5 100%) !important;
+
+  .dragEle-title {
+    background-image: linear-gradient(0deg, #444D55 0%, #616F7A 100%) !important;
+  }
+}
+
 .dragEle {
   border-radius: 1vh;
-  background-color: white;
   width: 0;
   height: 0;
   margin: 0;
@@ -15,6 +30,7 @@
   // 组件标题样式
   @title-height: 2.5vh;
   transition: all 0.1s;
+  background-image: linear-gradient(135deg, #e6f7ff 0%, #F2FBFF 100%);
 
   .dragEle-title {
     height: @title-height;
@@ -23,11 +39,14 @@
     margin: 0;
     line-height: @title-height;
     width: 100%;
-    background-color: white;
-    border-bottom: 1px solid #E8E8E8;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    //background-image: linear-gradient(0deg, #444D55 0%, #616F7A 100%);
+    background-image: linear-gradient(0deg, #1890ff 0%, #69c0ff 100%);
+    background-color: #444D55;
+    color: white;
 
     .title-font {
       display: inline-block;
@@ -87,7 +106,7 @@
     padding: 0;
     right: 0;
     bottom: 0;
-    opacity:0;
+    opacity: 0;
     cursor: se-resize;
     z-index: 16;
   }

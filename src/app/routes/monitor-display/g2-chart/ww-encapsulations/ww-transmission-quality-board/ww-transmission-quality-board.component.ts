@@ -44,147 +44,147 @@ export class MonitorDisplayG2ChartWwEncapsulationsWwTransmissionQualityBoardComp
     let that = this;
     // 自定义多折线图
     const data = [{
-      date: '2018/01',
+      date: '2019/01',
       type: '光纤光频传递分系统',
       value: 70,
     }, {
-      date: '2018/01',
+      date: '2019/01',
       type: '光纤时间同步分系统',
       value: 80,
     }, {
-      date: '2018/01',
+      date: '2019/01',
       type: '光纤微波传递分系统',
       value: 87,
     }, {
-      date: '2018/02',
+      date: '2019/02',
       type: '光纤光频传递分系统',
       value: 80,
     }, {
-      date: '2018/02',
+      date: '2019/02',
       type: '光纤时间同步分系统',
       value: 84,
     }, {
-      date: '2018/02',
+      date: '2019/02',
       type: '光纤微波传递分系统',
       value: 85,
     }, {
-      date: '2018/03',
+      date: '2019/03',
       type: '光纤光频传递分系统',
       value: 81,
     }, {
-      date: '2018/03',
+      date: '2019/03',
       type: '光纤时间同步分系统',
       value: 84,
     }, {
-      date: '2018/03',
+      date: '2019/03',
       type: '光纤微波传递分系统',
       value: 92,
     }, {
-      date: '2018/04',
+      date: '2019/04',
       type: '光纤光频传递分系统',
       value: 85,
     }, {
-      date: '2018/04',
+      date: '2019/04',
       type: '光纤时间同步分系统',
       value: 79,
     }, {
-      date: '2018/04',
+      date: '2019/04',
       type: '光纤微波传递分系统',
       value: 93,
     }, {
-      date: '2018/05',
+      date: '2019/05',
       type: '光纤光频传递分系统',
       value: 79,
     }, {
-      date: '2018/05',
+      date: '2019/05',
       type: '光纤时间同步分系统',
       value: 82,
     }, {
-      date: '2018/05',
+      date: '2019/05',
       type: '光纤微波传递分系统',
       value: 84,
     }, {
-      date: '2018/06',
+      date: '2019/06',
       type: '光纤光频传递分系统',
       value: 75,
     }, {
-      date: '2018/06',
+      date: '2019/06',
       type: '光纤时间同步分系统',
       value: 70,
     }, {
-      date: '2018/06',
+      date: '2019/06',
       type: '光纤微波传递分系统',
       value: 80,
     }, {
-      date: '2018/07',
+      date: '2019/07',
       type: '光纤光频传递分系统',
       value: 83,
     }, {
-      date: '2018/07',
+      date: '2019/07',
       type: '光纤时间同步分系统',
       value: 67,
     }, {
-      date: '2018/07',
+      date: '2019/07',
       type: '光纤微波传递分系统',
       value: 76,
     }, {
-      date: '2018/08',
+      date: '2019/08',
       type: '光纤光频传递分系统',
       value: 87,
     }, {
-      date: '2018/08',
+      date: '2019/08',
       type: '光纤时间同步分系统',
       value: 84,
     }, {
-      date: '2018/08',
+      date: '2019/08',
       type: '光纤微波传递分系统',
       value: 85,
     }, {
-      date: '2018/09',
+      date: '2019/09',
       type: '光纤光频传递分系统',
       value: 90,
     }, {
-      date: '2018/09',
+      date: '2019/09',
       type: '光纤时间同步分系统',
       value: 86,
     }, {
-      date: '2018/09',
+      date: '2019/09',
       type: '光纤微波传递分系统',
       value: 84,
     }, {
-      date: '2018/10',
+      date: '2019/10',
       type: '光纤光频传递分系统',
       value: 91,
     }, {
-      date: '2018/10',
+      date: '2019/10',
       type: '光纤时间同步分系统',
       value: 80,
     }, {
-      date: '2018/10',
+      date: '2019/10',
       type: '光纤微波传递分系统',
       value: 83,
     }, {
-      date: '2018/11',
+      date: '2019/11',
       type: '光纤光频传递分系统',
       value: 70,
     }, {
-      date: '2018/11',
+      date: '2019/11',
       type: '光纤时间同步分系统',
       value: 92,
     }, {
-      date: '2018/11',
+      date: '2019/11',
       type: '光纤微波传递分系统',
       value: 78,
     }, {
-      date: '2018/12',
+      date: '2019/12',
       type: '光纤光频传递分系统',
       value: 88,
     }, {
-      date: '2018/12',
+      date: '2019/12',
       type: '光纤时间同步分系统',
       value: 73,
     }, {
-      date: '2018/12',
+      date: '2019/12',
       type: '光纤微波传递分系统',
       value: 81,
     },

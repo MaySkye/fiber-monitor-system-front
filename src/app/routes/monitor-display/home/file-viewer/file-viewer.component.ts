@@ -1,7 +1,7 @@
 import { Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { _HttpClient } from '@delon/theme';
-import { MxgraphAuthService } from '@shared/mxgraph/mxgraph-auth.service';
+import { WwCommonService } from '@shared/mxgraph/ww-common-service';
 
 @Component({
   selector: 'ww-file-viewer',
@@ -20,7 +20,7 @@ export class MonitorDisplayHomeFileViewerComponent {
 
 
   @ViewChild('mxGraph') private _mxGraphIframe: ElementRef;  // iframe
-  @ViewChild('mxGraphSetting') private _mxGraphSetting: ElementRef;  // mxGraphSetting
+  @ViewChild('defaultSite') private _defaultSiteIframe: ElementRef;  // iframe
   private _reader = new FileReader();
   private _content;  // 文件内容
   private _refreshDelay;  // 组态图刷新延迟
@@ -28,7 +28,7 @@ export class MonitorDisplayHomeFileViewerComponent {
   constructor(private http: _HttpClient,
               private _ele: ElementRef,
               private sanitizer: DomSanitizer,
-              private mxGraphAuthService: MxgraphAuthService) {
+              private mxGraphAuthService: WwCommonService) {
   }
 
 
@@ -81,7 +81,7 @@ export class MonitorDisplayHomeFileViewerComponent {
           type: 'mxe-file',
           content: that._reader.result,
         };
-        this.mxGraphAuthService.doHandle(that._mxGraphIframe.nativeElement);
+        this.mxGraphAuthService.doHandleForMxGraph(that._mxGraphIframe.nativeElement);
         window.onmessage = (event)=>{
           if(event.data.type === 'loaded')
           {
@@ -89,6 +89,13 @@ export class MonitorDisplayHomeFileViewerComponent {
           }
         };
       };
+    }
+    else if(this.file.extra === 'default-mxe-file')
+    {
+      this.type = 'default-mxe-file';
+      setTimeout(()=>{
+        this.mxGraphAuthService.doHandleForMxGraph(this._defaultSiteIframe.nativeElement);
+      },1000);
     }
     console.log(`The type is ${this.type}`);
   }

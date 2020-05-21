@@ -38,36 +38,105 @@
     <!-- 提示框 -->
     <div class="location-tip" id="location-tip"></div>
 
-    <!-- 监控组件 0 -->
-    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="总览" data-begin="[0, 0]" data-size="[5, 6]"
+    <!--    data-begin="[1, 0]" data-size="[1, 1]-->
+    <!-- 正在运行设备数量 -->
+    <ww-home-widget _draggable="true" [resize]="_resize"
+                    id="runningDeviceAccount">
+      <ng-template #title>
+        <i nz-icon nzType="bar-chart" nzTheme="outline"></i>
+        正在运行设备数量
+      </ng-template>
+      <ng-template #content>
+        <ww-running-device-number></ww-running-device-number>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 集中故障告警（季度） -->
+    <ww-home-widget _draggable="true" [resize]="_resize"
+                    id="centralizedFaultWaring">
+      <ng-template #title>
+        <i nz-icon nzType="alert" nzTheme="outline"></i>
+        集中故障告警（季度）
+      </ng-template>
+      <ng-template #content>
+        <ww-centralized-fault-warning></ww-centralized-fault-warning>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 系统传输质量看板 -->
+    <ww-home-widget _draggable="true" [resize]="_resize"
+                    id="transmissionQualityBoard">
+      <ng-template #title>
+        <i nz-icon nzType="fund" nzTheme="outline"></i>
+        系统传输质量看板
+      </ng-template>
+      <ng-template #content>
+        <ww-transmission-quality-board></ww-transmission-quality-board>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 站点分布 -->
+    <ww-home-widget _draggable="true" [resize]="_resize"
+                    id="siteDistribution">
+      <ng-template #title><i nz-icon nzType="global" nzTheme="outline"></i>
+        站点分布
+      </ng-template>
+      <ng-template #content>
+        <app-baidu-site-distribution></app-baidu-site-distribution>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 热力地图 -->
+    <ww-home-widget _draggable="true" [resize]="_resize"
+                    id="heatMap">
+      <ng-template #title><i nz-icon nzType="heat-map" nzTheme="outline"></i>
+        热力地图
+      </ng-template>
+      <ng-template #content>
+        <app-baidu-heat-map style="display:block; height: calc(100% + 20px)"></app-baidu-heat-map>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 主要干线传输稳定度 -->
+    <ww-home-widget _draggable="true" [resize]="_resize"
+                    id="mainWireStability">
+      <ng-template #title>
+        <i nz-icon nzType="project" nzTheme="outline"></i>
+        主要干线传输稳定度
+      </ng-template>
+      <ng-template #content>
+        <ww-main-wire-stability #mainWireStability></ww-main-wire-stability>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 监控组件  -->
+    <ww-home-widget _draggable="true" [resize]="_resize"
                     id="siteAccount">
+      <ng-template #title>
+        <i nz-icon nzType="gold" nzTheme="outline"></i>
+        站点数目
+      </ng-template>
       <ng-template #content>
-        <ww-card downText="30（个）" upText="基站数量">
-          <ng-template #body>
-            <div>基站使用状态周同比 &nbsp; 12%<span style="color:red;">&nbsp;▲</span></div>
-            <div>基站使用状态日同比 &nbsp; 11%<span style="color:green;">&nbsp;▼</span></div>
-          </ng-template>
-          <ng-template #footer>基站使用次数 12314（次）</ng-template>
-        </ww-card>
+        <ww-time-service-site-info></ww-time-service-site-info>
       </ng-template>
     </ww-home-widget>
 
-    <!-- 监控组件 1 -->
-    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="总览" data-begin="[5, 0]" data-size="[5, 6]"
-                    id="visitorAccount">
-      <ng-template #content>
-        <ww-card upText="访问量" downText="81848">
-          <ng-template #body>
-            <ww-mini-area [data]="data"></ww-mini-area>
-          </ng-template>
-          <ng-template #footer>日访问量 1,2234</ng-template>
-        </ww-card>
-      </ng-template>
-    </ww-home-widget>
+    <!-- 监控组件  -->
+    <!--    <ww-home-widget _draggable="true" [resize]="_resize" -->
+    <!--                    id="visitorAccount">-->
+    <!--      <ng-template #title>总览</ng-template>-->
+    <!--      <ng-template #content>-->
+    <!--        <ww-visitor-number></ww-visitor-number>-->
+    <!--      </ng-template>-->
+    <!--    </ww-home-widget>-->
 
-    <!-- 监控组件 2 -->
-    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="总览" data-begin="[10, 0]" data-size="[5, 6]"
+    <!-- 监控组件  -->
+    <ww-home-widget _draggable="true" [resize]="_resize"
                     id="siteMaintenanceAccount">
+      <ng-template #title>
+        <i nz-icon nzType="medicine-box" nzTheme="outline"></i>
+        总览
+      </ng-template>
       <ng-template #content>
         <ww-card upText="站点维护数量" downText="6560">
           <ng-template #body>
@@ -78,59 +147,15 @@
       </ng-template>
     </ww-home-widget>
 
-    <!-- 站点分布 -->
-    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="站点分布" data-begin="[0, 6]" data-size="[5, 14]"
-                    id="siteDistribution">
-      <ng-template #content>
-        <app-baidu-site-distribution></app-baidu-site-distribution>
-      </ng-template>
-    </ww-home-widget>
-
-    <!-- 热力地图 -->
-    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="热力地图" data-begin="[5, 6]" data-size="[5, 14]"
-                    id="heatMap">
-      <ng-template #content>
-        <app-baidu-heat-map style="display:block; height: calc(100% + 20px)"></app-baidu-heat-map>
-      </ng-template>
-    </ww-home-widget>
-
-    <!-- 主要干线传输稳定度 -->
-    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="主要干线传输稳定度" data-begin="[15, 0]" data-size="[5, 10]" [settingList]="['refreshDelay', 'errorColor']"
-                    id="mainWireStability">
-      <ng-template #content>
-        <ww-main-wire-stability #mainWireStability></ww-main-wire-stability>
-      </ng-template>
-    </ww-home-widget>
-
-    <!-- 正在运行设备数量 -->
-    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="正在运行设备数量" data-begin="[15, 10]" data-size="[5, 10]"
-                    id="runningDeviceAccount">
-      <ng-template #content>
-        <ww-running-device-number></ww-running-device-number>
-      </ng-template>
-    </ww-home-widget>
-
-    <!-- 集中故障告警（季度） -->
-    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="集中故障告警（季度）" data-begin="[10, 6]" data-size="[5, 7]"
-                    id="centralizedFaultWaring">
-      <ng-template #content>
-        <ww-centralized-fault-warning></ww-centralized-fault-warning>
-      </ng-template>
-    </ww-home-widget>
-
-    <!-- 系统传输质量看板 -->
-    <ww-home-widget _draggable="true" [resize]="_resize" ww-title="系统传输质量看板" data-begin="[10, 13]" data-size="[5, 7]"
-                    id="transmissionQualityBoard">
-      <ng-template #content>
-        <ww-transmission-quality-board></ww-transmission-quality-board>
-      </ng-template>
-    </ww-home-widget>
-
     <!-- 外部文件 -->
     <ww-home-widget *ngFor="let key of _Object.keys(_localFileViews)" _draggable="true" [resize]="_resize"
-                    [ww-title]="_localFileViews[key].file.name" data-size="[0, 0]" [fileViewerId]="key"
+                    data-size="[0, 0]" [fileViewerId]="key"
                     (close)="closeFileViewer($event)" [settingList]="_localFileViews[key].settingList"
     >
+      <ng-template #title>
+        <i nz-icon nzType="file" nzTheme="outline"></i>
+        {{_localFileViews[key].file.name}}
+      </ng-template>
       <ng-template #content>
         <ww-file-viewer #fileViewer [file]="_localFileViews[key].file"
                         [fileViewerId]="_localFileViews[key].fileViewerId"></ww-file-viewer>

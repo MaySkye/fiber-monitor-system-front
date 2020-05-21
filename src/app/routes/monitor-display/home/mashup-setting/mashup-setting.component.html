@@ -2,14 +2,14 @@
   <!-- 设置表单 -->
   <div [style.transitionDuration]="_transitionDuration + 'ms'">
     <form nz-form #f="ngForm" se-container size="compact" gutter="24">
-      <se label="外边距" col="3">
+      <se label="外边距" col="4">
         <input type="text" nz-input required type="number" name="margin" [(ngModel)]="_margin"/>
         <nz-select nzAllowClear nzPlaceHolder="Choose" name="unit" [(ngModel)]="_unit">
           <nz-option [nzValue]="'px'" nzLabel="px"></nz-option>
           <nz-option [nzValue]="'%'" nzLabel="%"></nz-option>
         </nz-select>
       </se>
-      <se label="维度" col="3">
+      <se label="维度" col="4">
         <nz-select nzAllowClear nzPlaceHolder="Choose" [(ngModel)]="_newDimension" name="dimension">
           <!-- 宫格布局 -->
           <nz-option [nzValue]="3" nzLabel="3（标准宫格）"></nz-option>
@@ -26,7 +26,13 @@
           <span>延展时使用最佳布局</span>
         </label>
       </se>
-      <se label="过渡动画时长(ms)" col="3">
+      <se label="主题" col="4">
+        <nz-select nzAllowClear nzPlaceHolder="Choose" [(ngModel)]="_mashupWidgetTheme" name="mashupWidgetTheme">
+          <nz-option [nzValue]="'theme-title-blue'" nzLabel="蓝色"></nz-option>
+          <nz-option [nzValue]="'theme-title-gray'" nzLabel="灰色"></nz-option>
+        </nz-select>
+      </se>
+      <se label="过渡动画时长(ms)" col="4">
         <input type="text" nz-input required type="number" [(ngModel)]="_transitionDuration" name="transitionDuration"/>
       </se>
       <se label="" col="1">

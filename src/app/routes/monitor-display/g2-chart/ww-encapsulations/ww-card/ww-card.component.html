@@ -1,15 +1,9 @@
-<div class="home">
+<div class="card">
   <div class="head" #headBox>
-    <!-- 图片-->
-    <div class="image" #imageBox
-         [ngStyle]="{width: image?imageBox.offsetHeight + 'px': '0'}">
-      <ng-template [ngTemplateOutlet]="image"></ng-template>
-    </div>
     <!-- 标题 -->
     <div class="title" #titleBox [ngStyle]="{
-      width: image?headBox.offsetWidth - imageBox.offsetWidth  + 'px': '100%',
-      paddingLeft: image? '5%': 'auto'
-    }">
+      width: image? (headBox.offsetWidth - imageBox.offsetWidth) * 0.95 + 'px': '100%',
+      paddingLeft: 'auto'}">
       <!-- 上标题 -->
       <div class="title-up" #upBox [ngStyle]="{
         fontSize: upBox.offsetHeight * 0.9 + 'px',
@@ -20,6 +14,11 @@
         fontSize: downBox.offsetHeight * 0.8 + 'px',
         lineHeight: downBox.offsetHeight  + 'px'
       }">{{downText}}</div>
+    </div>
+    <!-- 图片-->
+    <div class="image" #imageBox
+         [ngStyle]="{width: image?imageBox.offsetHeight + 'px': '0'}">
+      <ng-template [ngTemplateOutlet]="image"></ng-template>
     </div>
   </div>
   <!-- 内容主体 -->

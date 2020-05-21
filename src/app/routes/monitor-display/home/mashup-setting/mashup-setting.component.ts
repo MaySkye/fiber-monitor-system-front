@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter} from '@angular/core';
 import {_HttpClient} from '@delon/theme';
+import { WwCommonService } from '@shared/mxgraph/ww-common-service';
 
 @Component({
   selector: 'ww-mashup-setting',
@@ -7,7 +8,7 @@ import {_HttpClient} from '@delon/theme';
 })
 export class MonitorDisplayMashupSettingComponent implements OnInit {
 
-  constructor(private http: _HttpClient) {
+  constructor(private http: _HttpClient, private wwCommonService: WwCommonService) {
   }
 
   ngOnInit() {
@@ -18,6 +19,7 @@ export class MonitorDisplayMashupSettingComponent implements OnInit {
   @Input("unit") private _unit;
   @Input("newDimension") private _newDimension;
   @Input("alwaysMax") private _alwaysMax;
+  private _mashupWidgetTheme = 'theme-title-blue';
 
   @Output('applyArgs') private _outer = new EventEmitter();
 
@@ -54,6 +56,8 @@ export class MonitorDisplayMashupSettingComponent implements OnInit {
     };
     // 向父组件传递参数
     this._outer.emit(args);
+    // 主题变化
+    this.wwCommonService.changeMashupWidgetTheme(this._mashupWidgetTheme);
     // 关闭菜单
     this.toggleSettingWindow();
   }

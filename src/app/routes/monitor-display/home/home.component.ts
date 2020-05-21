@@ -1,11 +1,11 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {_HttpClient} from '@delon/theme';
-import {di} from "@delon/form/src/utils";
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { _HttpClient } from '@delon/theme';
+import { di } from '@delon/form/src/utils';
 
 @Component({
   selector: 'app-monitor-display-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  styleUrls: ['./home.component.less'],
 })
 export class MonitorDisplayHomeComponent implements OnInit {
 
@@ -16,8 +16,8 @@ export class MonitorDisplayHomeComponent implements OnInit {
   /* 这里是支持调节的参数 */
   private transitionDuration = 100;  // 过渡动画延时(s)
   private dimension = 3;  // 宫格维度
-  private margin = 5;  // 外边距数值
-  private unit = 'px'; // 外边距单位
+  private margin = 0.5;  // 外边距数值
+  private unit = '%'; // 外边距单位
   private alwaysMax = true;  // 始终为找到最佳布局而改变dimension
 
   /* 内置全局参数 */
@@ -39,8 +39,8 @@ export class MonitorDisplayHomeComponent implements OnInit {
   private _localFileViews = {}; // 拖入的本机文件视图
   private _Object = Object;  // js-Object类
   private _onMashupResie;  // mashup区域变动监听
-  @ViewChild("mashupSetting") private _mashupSettingFrom: ElementRef; // 宫格参数表单
-  @ViewChild("homeSetting") private _homeSettingCmpt;
+  @ViewChild('mashupSetting') private _mashupSettingFrom: ElementRef; // 宫格参数表单
+  @ViewChild('homeSetting') private _homeSettingCmpt;
 
   /*     *************************************************************************************************************************     */
   /*     ****************************************************** 自定义函数部分 *****************************************************     */
@@ -56,11 +56,11 @@ export class MonitorDisplayHomeComponent implements OnInit {
           empty: true,
           begin: [i, j],
           size: [1, 1],
-        }
+        };
       }
     }
     delete this._localFileViews[msg.fileViewerId];
-    console.log("关闭*****", msg.fileViewerId, this._localFileViews);
+    console.log('关闭*****', msg.fileViewerId, this._localFileViews);
   }
 
   // 自动延展
@@ -140,12 +140,12 @@ export class MonitorDisplayHomeComponent implements OnInit {
     // 获取组件
     let drags: any = document.querySelectorAll(this._dragEleStyleClassName);
     // 参数设置函数
-    let reLayout = function (layout) {
+    let reLayout = function(layout) {
       for (let drag of drags) {
         drag.parentNode.dataset.size = layout[drag.parentNode.id].size;
         drag.parentNode.dataset.begin = layout[drag.parentNode.id].begin;
       }
-    }
+    };
     switch (dimension) {
       case 3:
         reLayout(this._3de_layout);
@@ -166,7 +166,7 @@ export class MonitorDisplayHomeComponent implements OnInit {
       size = JSON.parse(size);
     }
     // 获取元素左上角相对于页面的x坐标
-    let getPageXofElement = function (element) {
+    let getPageXofElement = function(element) {
       var offset = element.offsetLeft;
       if (element.offsetParent != null) {
         offset += getPageXofElement(element.offsetParent);
@@ -174,7 +174,7 @@ export class MonitorDisplayHomeComponent implements OnInit {
       return offset;
     };
     // 获取元素在页面的y坐标
-    let getPageYofElement = function (element) {
+    let getPageYofElement = function(element) {
       var offset = element.offsetTop;
       if (element.offsetParent != null) {
         offset += getPageYofElement(element.offsetParent);
@@ -264,8 +264,8 @@ export class MonitorDisplayHomeComponent implements OnInit {
   // 重置宫格参数（逻辑值）map、margin、blockWidth、blockHeight
   private initArgs() {
     // 初始化map二维数组
-    this._map = Array.from({length: this.dimension}, (value0, index0) => {
-      let floor = Array.from({length: this.dimension}, (value1, index1) => {
+    this._map = Array.from({ length: this.dimension }, (value0, index0) => {
+      let floor = Array.from({ length: this.dimension }, (value1, index1) => {
         return {
           // 内容组件
           empty: true,
@@ -273,7 +273,7 @@ export class MonitorDisplayHomeComponent implements OnInit {
           begin: [index0, index1],
           // 占位大小
           size: [1, 1],
-        }
+        };
       });
       return floor;
     });
@@ -295,7 +295,7 @@ export class MonitorDisplayHomeComponent implements OnInit {
 
   // 刷新UI
   private updateUI() {
-    console.log("刷新UI...");
+    console.log('刷新UI...');
     // 重置宫格参数
     this.initArgs();
     // 重新填充元素
@@ -316,8 +316,8 @@ export class MonitorDisplayHomeComponent implements OnInit {
         this._map[oriBegin[0] + i][oriBegin[1] + j] = {
           empty: true,
           begin: [oriBegin[0] + i, oriBegin[1] + j],
-          size: [1, 1]
-        }
+          size: [1, 1],
+        };
       }
     }
   }
@@ -332,9 +332,9 @@ export class MonitorDisplayHomeComponent implements OnInit {
     // 获取组件类指针
     let that = this;
     // ***************** 监听dragstart（开始拖拽）******************
-    this._mashup.ondragstart = function (event) {
+    this._mashup.ondragstart = function(event) {
       // 防止事件重叠
-      if (event.target.classList.contains("resize-bottom-right") || event.target.classList.contains("dragEle-content-withTitle")) {
+      if (event.target.classList.contains('resize-bottom-right') || event.target.classList.contains('dragEle-content-withTitle')) {
         event.preventDefault();
         return;
       }
@@ -354,7 +354,7 @@ export class MonitorDisplayHomeComponent implements OnInit {
       that._locationTip.dataset.begin = '';
     };
     // **************** 监听drag（拖拽中）**************************
-    this._mashup.ondrag = function (event) {
+    this._mashup.ondrag = function(event) {
       // 获取选中blockId
       let curBlockId = that.getDropBlockId(event, that._dragEle.parentNode.dataset.size);
       if (curBlockId != that._locationTip.dataset.begin) {
@@ -365,11 +365,11 @@ export class MonitorDisplayHomeComponent implements OnInit {
       }
     };
     // **************** 设置允许拖拽元素（悬停）*********************
-    this._mashup.ondragover = function (event) {
+    this._mashup.ondragover = function(event) {
       event.preventDefault();
     };
     // **************** 监听dragend（拖拽结束）*********************
-    document.ondragend = function (event) {
+    document.ondragend = function(event) {
       // 隐藏占位框
       that.hideBorder();
       // 展示元素拖拽定位提示框
@@ -381,7 +381,7 @@ export class MonitorDisplayHomeComponent implements OnInit {
       that.fillElement(beginId, that._dragEle);
     };
     // **************** 监听内容大小变动 *********************
-    this._onMashupResie = setInterval(function () {
+    this._onMashupResie = setInterval(function() {
       let newSize = ' ' + that._mashup.offsetWidth + that._mashup.offsetHeight;
       if (newSize != that._mashupSize) {
         that.updateUI();
@@ -395,14 +395,14 @@ export class MonitorDisplayHomeComponent implements OnInit {
     }
     // **************** 监听drop（文件拖入）*********************
     // 防止窗口内打开文件
-    document.ondragover = function (event) {
+    document.ondragover = function(event) {
       event.preventDefault();
     };
-    document.ondrop = function (event) {
+    document.ondrop = function(event) {
       event.preventDefault();
     };
     // 监听文件拖入
-    this._mashup.ondrop = function (event) {
+    this._mashup.ondrop = function(event) {
       // 防止在窗口内打开图片
       event.preventDefault();
       // 检测到文件拖入
@@ -417,12 +417,9 @@ export class MonitorDisplayHomeComponent implements OnInit {
           file: file,
         };
         // 鉴别类型
-        if(/.*.mxe/.test(file.name))
-        {
+        if (/.*.mxe/.test(file.name)) {
           that._localFileViews[tempstamp]['settingList'] = ['refreshDelay'];
-        }
-        else if(/text\/plain/.test(file.type))
-        {
+        } else if (/text\/plain/.test(file.type)) {
           that._localFileViews[tempstamp]['settingList'] = ['fontSize', 'fontColor'];
         }
         // 增加组件数目
@@ -431,14 +428,14 @@ export class MonitorDisplayHomeComponent implements OnInit {
           that.initArgs();
         }
         // 延迟执行autoExpand，否则DOM更新未完成时操作无效
-        setTimeout(function () {
+        setTimeout(function() {
           that.autoExpand();
           that.initListeners();
         }, 500);
 
-        console.log("拖入一个文件", file, file.type);
+        console.log('拖入一个文件', file, file.type);
       }
-    }
+    };
   }
 
   // 初始化定位区域过渡效果
@@ -456,17 +453,17 @@ export class MonitorDisplayHomeComponent implements OnInit {
     // 获取调整图标元素
     let brResizeIcon: any = element.getElementsByClassName('resize-bottom-right')[0];
     // 监听移入缩放按钮
-    brResizeIcon.onmouseenter = function(event){
+    brResizeIcon.onmouseenter = function(event) {
       brResizeIcon.style.opacity = '1';
     };
-    brResizeIcon.onmouseleave = function(event){
+    brResizeIcon.onmouseleave = function(event) {
       brResizeIcon.style.opacity = '0';
     };
     // **************** 监听鼠标按下（开始调整大小） *********************
-    brResizeIcon.onmousedown = function (event) {
+    brResizeIcon.onmousedown = function(event) {
       // 防止事件冒泡到drag
       event.preventDefault();
-      console.log("触发者******", event.target);
+      console.log('触发者******', event.target);
       // 展示占位框
       that.showBorder();
       // 原始尺寸、起点
@@ -482,7 +479,7 @@ export class MonitorDisplayHomeComponent implements OnInit {
       let blocks: any = document.querySelectorAll(that._blockStyleClassName);
       let blockOffsetWidth = blocks[1].offsetLeft - blocks[0].offsetLeft;
       let blockOffsetHeight = blocks[that.dimension].offsetTop - blocks[0].offsetTop;
-      that._mashup.onmousemove = function (event) {
+      that._mashup.onmousemove = function(event) {
         // 鼠标移动总距离
         xMovement += event.movementX;
         yMovement += event.movementY;
@@ -500,9 +497,9 @@ export class MonitorDisplayHomeComponent implements OnInit {
             element.parentNode.dataset.size = newPos;
           }
         }
-      }
+      };
       // **************** 监听鼠标抬起（调整大小结束） *********************
-      window.onmouseup = function (event) {
+      window.onmouseup = function(event) {
         // 更改元素大小
         that.fillElement(element.parentNode.dataset.begin, element, element.parentNode.dataset.size);
         // 隐藏重定位提示框
@@ -511,25 +508,25 @@ export class MonitorDisplayHomeComponent implements OnInit {
         that.hideBorder();
         // 清除鼠标抬起监听
         window.onmouseup = that._mashup.onmousemove = null;
-      }
-    }
+      };
+    };
   }
 
   // 展示占位框
   private showBorder(): void {
-    let mashupArea: any = document.getElementById("mashup-area");
+    let mashupArea: any = document.getElementById('mashup-area');
     mashupArea.style.opacity = '1';
   }
 
   // 隐藏占位框
   private hideBorder(): void {
-    let mashupArea: any = document.getElementById("mashup-area");
+    let mashupArea: any = document.getElementById('mashup-area');
     mashupArea.style.opacity = '0';
   }
 
   // 获取目标DOM元素，可传入DOM或string或（代表id的）number
   private getTargetDOMElement(target: any) {// 获取目标元素DOM
-    if (typeof target == "number" || typeof target == "string") {
+    if (typeof target == 'number' || typeof target == 'string') {
       target = document.getElementById(target.toString());
     }
     return target;
@@ -587,13 +584,14 @@ export class MonitorDisplayHomeComponent implements OnInit {
           this._map[beginBlockId[0] + i][beginBlockId[1] + j] = {
             empty: false,
             begin: beginBlockId,
-            size: size
-          }
+            size: size,
+          };
           // console.log('填充', beginBlockId[0] + i, beginBlockId[1] + j)
         }
       }
     }
-    console.log(this._map);
+    // 打印坐标map
+    // console.log(this._map);
     // 更改起点
     element.parentNode.dataset.begin = beginBlock.id;
     // 变更大小
@@ -613,27 +611,30 @@ export class MonitorDisplayHomeComponent implements OnInit {
   ngOnInit() {
     // 设置data
     this.data = [
-      {time: '2019-07-17', value: 7}
-      , {time: '2019-07-18', value: 5}
-      , {time: '2019-07-19', value: 4}
-      , {time: '2019-07-20', value: 2}
-      , {time: '2019-07-21', value: 4}
-      , {time: '2019-07-22', value: 7}
-      , {time: '2019-07-23', value: 5}
-      , {time: '2019-07-24', value: 6}
-      , {time: '2019-07-25', value: 5}
-      , {time: '2019-07-26', value: 9}
-      , {time: '2019-07-27', value: 6}
-      , {time: '2019-07-28', value: 3}
-      , {time: '2019-07-29', value: 1}
-      , {time: '2019-07-30', value: 5}
-      , {time: '2019-07-31', value: 3}
-      , {time: '2019-08-01', value: 6}
-      , {time: '2019-08-02', value: 5}];
-
-
+      { time: '2019-07-17', value: 7 }
+      , { time: '2019-07-18', value: 5 }
+      , { time: '2019-07-19', value: 4 }
+      , { time: '2019-07-20', value: 2 }
+      , { time: '2019-07-21', value: 4 }
+      , { time: '2019-07-22', value: 7 }
+      , { time: '2019-07-23', value: 5 }
+      , { time: '2019-07-24', value: 6 }
+      , { time: '2019-07-25', value: 5 }
+      , { time: '2019-07-26', value: 9 }
+      , { time: '2019-07-27', value: 6 }
+      , { time: '2019-07-28', value: 3 }
+      , { time: '2019-07-29', value: 1 }
+      , { time: '2019-07-30', value: 5 }
+      , { time: '2019-07-31', value: 3 }
+      , { time: '2019-08-01', value: 6 }
+      , { time: '2019-08-02', value: 5 }];
     // 初始化宫格参数
     this.initArgs();
+    // 添加默认站点组态图
+    let time = new Date().getTime();
+    this._localFileViews[time] = {
+      fileViewerId: time, file: { name: '西安站点监控图', extra: 'default-mxe-file' }, settingList: ['refreshDelay'],
+    };
   }
 
 
@@ -653,89 +654,90 @@ export class MonitorDisplayHomeComponent implements OnInit {
     this.initListeners();
     // 刷新UI
     this.autoExpand();
-    // 测试
-  }
+  };
 
   /*     *************************************************************************************************************************     */
   /*     ******************************************************* 默认布局配置 *****************************************************     */
   /*     *************************************************************************************************************************     */
   // 3 维默认参数
+
   private _3de_layout = {
     siteAccount: {
-      begin: "[0, 0]",
-      size: "[1, 1]"
+      begin: '[0, 0]',
+      size: '[1, 1]',
     },
     visitorAccount: {
-      begin: "[1, 0]",
-      size: "[1, 1]"
+      begin: '[1, 0]',
+      size: '[1, 1]',
     },
     siteMaintenanceAccount: {
-      begin: "[2, 0]",
-      size: "[1, 1]"
+      begin: '[2, 0]',
+      size: '[1, 1]',
     },
     siteDistribution: {
-      begin: "[0, 1]",
-      size: "[1, 1]"
+      begin: '[0, 1]',
+      size: '[1, 1]',
     },
     heatMap: {
-      begin: "[1, 1]",
-      size: "[1, 1]"
+      begin: '[1, 1]',
+      size: '[1, 1]',
     },
     mainWireStability: {
-      begin: "[2, 1]",
-      size: "[1, 1]"
+      begin: '[2, 1]',
+      size: '[1, 1]',
     },
     runningDeviceAccount: {
-      begin: "[0, 2]",
-      size: "[1, 1]"
+      begin: '[0, 2]',
+      size: '[1, 1]',
     },
     centralizedFaultWaring: {
-      begin: "[1, 2]",
-      size: "[1, 1]"
+      begin: '[1, 2]',
+      size: '[1, 1]',
     },
     transmissionQualityBoard: {
-      begin: "[2, 2]",
-      size: "[1, 1]"
-    }
+      begin: '[2, 2]',
+      size: '[1, 1]',
+    },
   };
   // 20 维默认参数
-  private _20de_layout = {
+  private;
+  _20de_layout = {
     siteAccount: {
-      begin: "[0, 0]",
-      size: "[5, 6]"
+      begin: '[0, 0]',
+      size: '[5, 6]',
     },
     visitorAccount: {
-      begin: "[5, 0]",
-      size: "[5, 6]"
+      begin: '[5, 0]',
+      size: '[5, 6]',
     },
     siteMaintenanceAccount: {
-      begin: "[10, 0]",
-      size: "[5, 6]"
+      begin: '[10, 0]',
+      size: '[5, 6]',
     },
     siteDistribution: {
-      begin: "[0, 6]",
-      size: "[5, 14]"
+      begin: '[0, 6]',
+      size: '[5, 14]',
     },
     heatMap: {
-      begin: "[5, 6]",
-      size: "[5, 14]"
+      begin: '[5, 6]',
+      size: '[5, 14]',
     },
     mainWireStability: {
-      begin: "[15, 0]",
-      size: "[5, 10]"
+      begin: '[15, 0]',
+      size: '[5, 10]',
     },
     runningDeviceAccount: {
-      begin: "[15, 10]",
-      size: "[5, 10]"
+      begin: '[15, 10]',
+      size: '[5, 10]',
     },
     centralizedFaultWaring: {
-      begin: "[10, 6]",
-      size: "[5, 7]"
+      begin: '[10, 6]',
+      size: '[5, 7]',
     },
     transmissionQualityBoard: {
-      begin: "[10, 13]",
-      size: "[5, 7]"
-    }
+      begin: '[10, 13]',
+      size: '[5, 7]',
+    },
   };
   // 30 维默认参数
   private _30de_layout;

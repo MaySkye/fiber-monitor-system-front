@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
-import { MxgraphAuthService } from '@shared/mxgraph/mxgraph-auth.service';
+import { WwCommonService } from '@shared/mxgraph/ww-common-service';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class SiteAdminMxgraphComponent implements OnInit {
 
   constructor(private http: _HttpClient,
-              private mxGraphAuthService: MxgraphAuthService,
+              private mxGraphAuthService: WwCommonService,
               public router:ActivatedRoute) {
   }
 
@@ -41,7 +41,7 @@ export class SiteAdminMxgraphComponent implements OnInit {
         iframe["src"] = mxGraphRoot;
       }
     });
-    this.mxGraphAuthService.doHandle(iframe);
+    this.mxGraphAuthService.doHandleForMxGraph(iframe);
   }
 
 }

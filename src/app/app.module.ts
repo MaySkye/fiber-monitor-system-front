@@ -2,7 +2,7 @@ import { NgModule, LOCALE_ID, APP_INITIALIZER, Injector } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MxgraphAuthService } from './shared/mxgraph/mxgraph-auth.service';
+import { WwCommonService } from '@shared/mxgraph/ww-common-service';
 
 // #region default language
 // 参考：https://ng-alain.com/docs/i18n
@@ -114,7 +114,7 @@ import { LayoutModule } from './layout/layout.module';
     ...INTERCEPTOR_PROVIDES,
     ...I18NSERVICE_PROVIDES,
     ...APPINIT_PROVIDES,
-    MxgraphAuthService
+    WwCommonService
   ],
   bootstrap: [AppComponent]
 })
