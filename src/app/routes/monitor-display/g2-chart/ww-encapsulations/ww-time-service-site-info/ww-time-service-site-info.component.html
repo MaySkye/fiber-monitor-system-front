@@ -5,7 +5,7 @@
   <ng-template #body>
 <!--    <div>基站使用状态周同比 &nbsp; 12%<span style="color:red;">&nbsp;▲</span></div>-->
 <!--    <div>基站使用状态日同比 &nbsp; 11%<span style="color:green;">&nbsp;▼</span></div>-->
-    <div>正常运行数量 <span class="info-value" [ngStyle]="{color: siteWorkNumber.style}">{{siteWorkNumber.value}}（个）</span></div>
+    <div>正常运行数量 <span class="info-value">{{siteWorkNumber.value}}（个）</span></div>
     <div>正常运行时间 <span class="info-value">{{runtime}}</span></div>
   </ng-template>
   <ng-template #footer>故障率 <span class="info-value" [ngStyle]="{color: siteErrorRate.style}">{{siteErrorRate.value}}</span></ng-template>
