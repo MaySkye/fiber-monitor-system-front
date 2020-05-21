@@ -14,12 +14,12 @@ export class MonitorDisplayMashupSettingComponent implements OnInit {
   ngOnInit() {
   }
 
-  @Input("transitionDuration") private _transitionDuration;
-  @Input("margin") private _margin;
-  @Input("unit") private _unit;
-  @Input("newDimension") private _newDimension;
-  @Input("alwaysMax") private _alwaysMax;
-  private _mashupWidgetTheme = 'theme-title-blue';
+  @Input("transitionDuration") public _transitionDuration;
+  @Input("margin") public _margin;
+  @Input("unit") public _unit;
+  @Input("newDimension") public _newDimension;
+  @Input("alwaysMax") public _alwaysMax;
+  public _mashupWidgetTheme = 'theme-title-blue';
 
   @Output('applyArgs') private _outer = new EventEmitter();
 
@@ -45,7 +45,7 @@ export class MonitorDisplayMashupSettingComponent implements OnInit {
     }
   }
 
-  private applyMashupSetting() {
+  public applyMashupSetting() {
     let that = this;
     let args: object = {
       transitionDuration: that._transitionDuration > 1000 ? 1000 : this._transitionDuration,

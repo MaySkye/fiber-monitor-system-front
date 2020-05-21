@@ -14,7 +14,7 @@ export class MonitorDisplayG2ChartWwEncapsulationsWwTransmissionQualityBoardComp
   private _chart;
   private _oriSize;
 
-  constructor(private http: _HttpClient,private _ele:ElementRef) {
+  constructor(private http: _HttpClient,public _ele:ElementRef) {
   }
 
   ngOnInit(): void {

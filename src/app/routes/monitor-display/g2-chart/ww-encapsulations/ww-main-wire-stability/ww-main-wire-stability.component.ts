@@ -15,7 +15,7 @@ export class MonitorDisplayG2ChartWwEncapsulationsWwMainWireStabilityComponent i
   private errorColor = 'red';  // 故障颜色
 
   @ViewChild('mxGraphSetting') private _mxGraphSetting: ElementRef;  // mxGraphSetting
-  constructor(private http: _HttpClient, private _ele: ElementRef) {
+  constructor(private http: _HttpClient, public _ele: ElementRef) {
   }
 
   ngOnInit() {

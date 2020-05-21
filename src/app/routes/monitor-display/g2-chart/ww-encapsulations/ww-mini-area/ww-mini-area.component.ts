@@ -13,7 +13,7 @@ export class MonitorDisplayG2ChartWwEncapsulationsWwMiniAreaComponent implements
   private _chart;
   private _oriSize;
 
-  constructor(private _ele: ElementRef) {
+  constructor(public _ele: ElementRef) {
   }
 
   ngOnInit() {

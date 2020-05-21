@@ -70,13 +70,13 @@ export class SiteAdminServiceListComponent implements OnInit {
     });
   }
 
-  private data;
-  private getData(){
+  public data;
+  public getData(){
     this.http.get(this.url).subscribe((res)=>{
       this.data = res==null?[]:res;
     });
   }
-  private search(event)
+  public search(event)
   {
     let searchField = 'site_name';
     this.data = this.data.filter((record)=>{

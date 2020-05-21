@@ -22,25 +22,25 @@ export class MonitorDisplayHomeWidgetComponent implements OnInit {
 
   @Input('data-begin') private begin;  // 组件起点，(x, y)在(0, 0)开始
   @Input('data-size') private size;  // 尺寸
-  @Input('resize') private resize;  // 可重置大小标志
-  @Input('settingList') private settingList;  // 展示设置
-  @Input('_draggable') private draggable;
-  @Input('fileViewerId') private fileViewerId;  // 文件信息对应在homeComponent中的id
+  @Input('resize') public resize;  // 可重置大小标志
+  @Input('settingList') public settingList;  // 展示设置
+  @Input('_draggable') public draggable;
+  @Input('fileViewerId') public fileViewerId;  // 文件信息对应在homeComponent中的id
   @Input('settingHeight') private settingHeight = '100px';
 
-  @ContentChild('title') private _title;
-  @ContentChild('content') private _content: TemplateRef<any>;
+  @ContentChild('title') public _title;
+  @ContentChild('content') public _content: TemplateRef<any>;
   @ContentChild('fileViewer') private _fileViewer: any;
   @ContentChild('mainWireStability') private _mainWireStability: any;
 
-  private widgetTheme: string = 'theme-title-blue';
+  public widgetTheme: string = 'theme-title-blue';
 
 
   @ViewChild('setting') private setting: any;
 
   @Output('close') private _outer = new EventEmitter();
 
-  constructor(private http: _HttpClient, private _ele: ElementRef, public wwCommonService: WwCommonService) {
+  constructor(private http: _HttpClient, public _ele: ElementRef, public wwCommonService: WwCommonService) {
     // 监听主题变化
     this.wwCommonService.mashupWidgetTheme.subscribe((data) => {
       this.widgetTheme = data;
@@ -84,7 +84,7 @@ export class MonitorDisplayHomeWidgetComponent implements OnInit {
 
 
   // 应用设置
-  private applyArgs(params) {
+  public applyArgs(params) {
     if (this._fileViewer) {
       if (this._fileViewer.type == 'mxe-file') {
         this._fileViewer.applyMxGraphArgs(params);

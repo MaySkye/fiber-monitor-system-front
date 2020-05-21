@@ -13,7 +13,7 @@ export class MonitorDisplayHomeFileViewerComponent {
   private fontColor = 'black';
   private fontSize = '12px';
 
-  @Input('fileViewerId') private fileViewerId; // 记录视图id
+  @Input('fileViewerId') public fileViewerId; // 记录视图id
   @Input('file') private file;  // 文件
   @Input('mxGraphURL') private mxGraphURL = 'http://localhost:8080/javascript/examples/grapheditor/www/index.html';
   public type = 'x';  // 文件类型
@@ -26,7 +26,7 @@ export class MonitorDisplayHomeFileViewerComponent {
   private _refreshDelay;  // 组态图刷新延迟
 
   constructor(private http: _HttpClient,
-              private _ele: ElementRef,
+              public _ele: ElementRef,
               private sanitizer: DomSanitizer,
               private mxGraphAuthService: WwCommonService) {
   }

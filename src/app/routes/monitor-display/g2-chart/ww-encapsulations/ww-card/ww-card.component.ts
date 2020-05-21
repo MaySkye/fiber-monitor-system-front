@@ -8,16 +8,16 @@ import {_HttpClient} from '@delon/theme';
 })
 export class MonitorDisplayG2ChartWwEncapsulationsWwCardComponent implements OnInit {
 
-  @ContentChild("image") private image: TemplateRef<any>;
-  @ContentChild("body") private body: TemplateRef<any>;
-  @ContentChild("footer") private footer: TemplateRef<any>;
-  @Input("upText") private upText: string;
-  @Input("downText") private downText: string;
+  @ContentChild("image") image: TemplateRef<any>;
+  @ContentChild("body") body: TemplateRef<any>;
+  @ContentChild("footer") footer: TemplateRef<any>;
+  @Input("upText") upText: string;
+  @Input("downText") downText: string;
 
 
   @ViewChild("imageBox") private _imageBox: ElementRef;
 
-  constructor(private _ele: ElementRef) {
+  constructor(public _ele: ElementRef) {
   }
 
   ngOnInit() {

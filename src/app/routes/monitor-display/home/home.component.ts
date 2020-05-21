@@ -14,14 +14,14 @@ export class MonitorDisplayHomeComponent implements OnInit {
   loading = true;
 
   /* 这里是支持调节的参数 */
-  private transitionDuration = 100;  // 过渡动画延时(s)
-  private dimension = 3;  // 宫格维度
-  private margin = 0.5;  // 外边距数值
-  private unit = '%'; // 外边距单位
-  private alwaysMax = true;  // 始终为找到最佳布局而改变dimension
+  public transitionDuration = 100;  // 过渡动画延时(s)
+  public dimension = 3;  // 宫格维度
+  public margin = 0.5;  // 外边距数值
+  public unit = '%'; // 外边距单位
+  public alwaysMax = true;  // 始终为找到最佳布局而改变dimension
 
   /* 内置全局参数 */
-  private _map: any;  // 宫格占位地图 n * n 的二维数组，由于（x, y)，所以x坐标体现在数组行array[x]，y坐标体现在数组列array[x][y]
+  public _map: any;  // 宫格占位地图 n * n 的二维数组，由于（x, y)，所以x坐标体现在数组行array[x]，y坐标体现在数组列array[x][y]
   private _dragEventXGap: number;  // 鼠标相对于拖拽元素左上角的x偏移量补偿
   private _dragEventYGap: number;  // 鼠标相对于拖拽元素左上角的y偏移量补偿
   private _blockWidth;  // 宫格宽度，被【 private setBlockMargin() 】自动调整
@@ -34,13 +34,13 @@ export class MonitorDisplayHomeComponent implements OnInit {
   private _blockStyleClassName = '.mashup-block';
   private _dragEleStyleClassName = '.dragEle';
   private _lastTimestap = new Date().getTime();  // 历史时间戳
-  private _resize = true;  // 允许调整大小标志
+  public _resize = true;  // 允许调整大小标志
   private _standardCustomBoundary = 6; // 标准、自定义宫格边界值
-  private _localFileViews = {}; // 拖入的本机文件视图
-  private _Object = Object;  // js-Object类
+  public _localFileViews = {}; // 拖入的本机文件视图
+  public _Object = Object;  // js-Object类
   private _onMashupResie;  // mashup区域变动监听
   @ViewChild('mashupSetting') private _mashupSettingFrom: ElementRef; // 宫格参数表单
-  @ViewChild('homeSetting') private _homeSettingCmpt;
+  @ViewChild('homeSetting') public _homeSettingCmpt;
 
   /*     *************************************************************************************************************************     */
   /*     ****************************************************** 自定义函数部分 *****************************************************     */
@@ -64,7 +64,7 @@ export class MonitorDisplayHomeComponent implements OnInit {
   }
 
   // 自动延展
-  private autoExpand(allowAlwaysMax = true) {
+  public autoExpand(allowAlwaysMax = true) {
     // 获得所有组件
     let dragEles: any = document.querySelectorAll(this._dragEleStyleClassName);
     // 组件索引
@@ -101,7 +101,7 @@ export class MonitorDisplayHomeComponent implements OnInit {
   }
 
   // 应用新设置
-  private applyArgs(args) {
+  public applyArgs(args) {
     // 检测到宫格维度缩小
     if (args.dimension < this.dimension) {
       // 宫格不够用
