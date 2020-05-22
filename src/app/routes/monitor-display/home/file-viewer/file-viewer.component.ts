@@ -1,7 +1,7 @@
 import { Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { _HttpClient } from '@delon/theme';
-import { WwCommonService } from '@shared/mxgraph/ww-common-service';
+import { WwCommonService } from '@shared/ww-common/ww-common-service';
 
 @Component({
   selector: 'ww-file-viewer',

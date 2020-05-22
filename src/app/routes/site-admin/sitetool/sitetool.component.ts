@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
-import { WwCommonService } from '@shared/mxgraph/ww-common-service';
+import { WwCommonService } from '@shared/ww-common/ww-common-service';
 
 @Component({
   selector: 'app-site-admin-sitetool',

@@ -10,7 +10,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
-import { WwCommonService } from '@shared/mxgraph/ww-common-service';
+import { WwCommonService } from '@shared/ww-common/ww-common-service';
 
 @Component({
   selector: 'ww-home-widget',
@@ -33,7 +33,7 @@ export class MonitorDisplayHomeWidgetComponent implements OnInit {
   @ContentChild('fileViewer') private _fileViewer: any;
   @ContentChild('mainWireStability') private _mainWireStability: any;
 
-  public widgetTheme: string = 'theme-title-blue';
+  public widgetTheme: string = 'theme-blue';
 
 
   @ViewChild('setting') private setting: any;

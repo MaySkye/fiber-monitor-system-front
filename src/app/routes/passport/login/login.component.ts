@@ -7,7 +7,7 @@ import { DA_SERVICE_TOKEN, ITokenService, SocialOpenType, SocialService } from '
 import { ReuseTabService } from '@delon/abc';
 import { environment } from '@env/environment';
 import { StartupService } from '@core';
-import { WwCommonService } from '@shared/mxgraph/ww-common-service';
+import { WwCommonService } from '@shared/ww-common/ww-common-service';
 
 @Component({
   selector: 'passport-login',

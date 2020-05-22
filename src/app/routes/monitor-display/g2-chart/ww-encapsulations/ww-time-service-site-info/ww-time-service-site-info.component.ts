@@ -17,10 +17,14 @@ export class MonitorDisplayWwTimeServiceSiteInfoComponent implements OnInit {
   siteErrorRate: object = { value: 0, style: '' };
 
   ngOnInit() {
+    this.updateWorkingSiteNumber(426);
+    this.calculateRuntime('2020-01-01 00:00:00');
     setInterval(() => {
       this.calculateRuntime('2020-01-01 00:00:00');
-      this.updateWorkingSiteNumber(426);
     }, 1000);
+    setInterval(() => {
+      this.updateWorkingSiteNumber(426);
+    }, 5000);
   }
 
 

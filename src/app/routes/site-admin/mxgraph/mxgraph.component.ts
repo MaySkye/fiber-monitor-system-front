@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
-import { WwCommonService } from '@shared/mxgraph/ww-common-service';
+import { WwCommonService } from '@shared/ww-common/ww-common-service';
 import { ActivatedRoute } from '@angular/router';
 
 

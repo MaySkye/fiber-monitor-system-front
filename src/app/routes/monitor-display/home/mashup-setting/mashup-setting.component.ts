@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild, ElementRef, Input, Output, EventEmitter} from '@angular/core';
 import {_HttpClient} from '@delon/theme';
-import { WwCommonService } from '@shared/mxgraph/ww-common-service';
+import { WwCommonService } from '@shared/ww-common/ww-common-service';
 
 @Component({
   selector: 'ww-mashup-setting',
@@ -19,7 +19,7 @@ export class MonitorDisplayMashupSettingComponent implements OnInit {
   @Input("unit") public _unit;
   @Input("newDimension") public _newDimension;
   @Input("alwaysMax") public _alwaysMax;
-  public _mashupWidgetTheme = 'theme-title-blue';
+  public _mashupWidgetTheme = 'theme-blue';
 
   @Output('applyArgs') private _outer = new EventEmitter();
 
