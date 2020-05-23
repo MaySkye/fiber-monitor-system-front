@@ -18,7 +18,6 @@ const routes: Routes = [
   { path: 'mapcontrol', component: SiteAdminMapcontrolComponent },
   { path: 'service-list', component: SiteAdminServiceListComponent },
   { path: 'siteline-list', component: SiteAdminSitelineListComponent }];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
