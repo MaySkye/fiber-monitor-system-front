@@ -10,13 +10,15 @@ import { SiteAdminSitelineListComponent } from './siteline-list/siteline-list.co
 import { SiteAdminSiteEditDialogComponent } from './site-list/site-edit-dialog/site-edit-dialog.component';
 import { SiteAdminSitelineEditDialogComponent } from './siteline-list/siteline-edit-dialog/siteline-edit-dialog.component';
 
+
 const COMPONENTS = [
   SiteAdminSiteListComponent,
   SiteAdminMxgraphComponent,
   SiteAdminSitetoolComponent,
   SiteAdminMapcontrolComponent,
   SiteAdminServiceListComponent,
-  SiteAdminSitelineListComponent];
+  SiteAdminSitelineListComponent,
+  ];
 const COMPONENTS_NOROUNT = [
   
   SiteAdminSiteEditDialogComponent,
