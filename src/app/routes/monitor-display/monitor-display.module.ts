@@ -20,6 +20,8 @@ import { MonitorDisplayHomeFileViewerComponent } from './home/file-viewer/file-v
 import { MonitorDisplayHomeWidgetSettingComponent } from './home/widget/widget-setting/widget-setting.component';
 import { MonitorDisplayWwTimeServiceSiteInfoComponent } from './g2-chart/ww-encapsulations/ww-time-service-site-info/ww-time-service-site-info.component';
 import { MonitorDisplayVisitorNumberComponent } from './g2-chart/ww-encapsulations/visitor-number/visitor-number.component';
+import { MonitorDisplaySiteMaintenanceCardComponent } from './g2-chart/ww-encapsulations/site-maintainance-card/site-maintenance-card.component';
+import { MonitorDisplaySiteRadarComponent } from './g2-chart/ww-encapsulations/site-radar/site-radar.component';
 
 
 const COMPONENTS = [
@@ -38,7 +40,9 @@ const COMPONENTS = [
   MonitorDisplayHomeFileViewerComponent,
   MonitorDisplayHomeWidgetSettingComponent,
   MonitorDisplayWwTimeServiceSiteInfoComponent,
-  MonitorDisplayVisitorNumberComponent];
+  MonitorDisplayVisitorNumberComponent,
+  MonitorDisplaySiteMaintenanceCardComponent,
+  MonitorDisplaySiteRadarComponent];
 const COMPONENTS_NOROUNT = [];
 
 @NgModule({

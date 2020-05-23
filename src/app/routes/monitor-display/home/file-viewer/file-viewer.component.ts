@@ -81,11 +81,11 @@ export class MonitorDisplayHomeFileViewerComponent {
           type: 'mxe-file',
           content: that._reader.result,
         };
-        this.mxGraphAuthService.doHandleForMxGraph(that._mxGraphIframe.nativeElement);
         window.onmessage = (event)=>{
           if(event.data.type === 'loaded')
           {
             that._mxGraphIframe.nativeElement.contentWindow.postMessage(message, '*');
+            this.mxGraphAuthService.postAuthorization(that._mxGraphIframe.nativeElement);
           }
         };
       };
@@ -93,9 +93,13 @@ export class MonitorDisplayHomeFileViewerComponent {
     else if(this.file.extra === 'default-mxe-file')
     {
       this.type = 'default-mxe-file';
-      setTimeout(()=>{
-        this.mxGraphAuthService.doHandleForMxGraph(this._defaultSiteIframe.nativeElement);
-      },1000);
+      // *ngIf可能导致_defaultSiteIframe为空（未渲染），因此使用mxGraphAuthService.doHandleForMxGraph，传参会指向null
+      window.onmessage = (event)=>{
+        if(event.data.type === 'loaded')
+        {
+          this.mxGraphAuthService.postAuthorization(this._defaultSiteIframe.nativeElement);
+        }
+      };
     }
     console.log(`The type is ${this.type}`);
   }

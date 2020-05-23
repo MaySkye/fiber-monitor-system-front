@@ -1,0 +1,54 @@
+<div class="home">
+  <div class="left" #left>
+    <!-- 头部 -->
+    <div class="head">
+      <!-- 上标题 -->
+      <div class="title-up" #upBox [ngStyle]="{
+        fontSize: upBox.offsetHeight * 0.9 + 'px',
+        lineHeight: upBox.offsetHeight  + 'px'
+      }">数据流量（pc/s）
+      </div>
+      <!-- 下标题 -->
+      <div class="title-down" #downBox [ngStyle]="{
+        fontSize: downBox.offsetHeight * 0.8 + 'px',
+        lineHeight: downBox.offsetHeight  + 'px'
+      }">{{recordTotal}}</div>
+    </div>
+    <!-- 主体 -->
+    <div class="body" #body>
+      <!--      color: '#65D288'-->
+      <div [ngStyle]="{
+        fontSize: body.offsetHeight * 0.32 + 'px',
+        lineHeight: body.offsetHeight * 0.5 + 'px'
+        }">
+        正常
+        <span class="info-value">{{_data[4].value + _data[5].value}}条</span>
+      </div>
+      <!--      color: '#F8B837'-->
+      <div [ngStyle]="{
+        fontSize: body.offsetHeight * 0.32 + 'px',
+        lineHeight: body.offsetHeight * 0.5 + 'px'
+        }">
+        异常
+        <span class="info-value">{{_data[2].value + _data[3].value}}条</span>
+      </div>
+    </div>
+    <!-- 尾部 -->
+    <div class="footer" #footerBox [ngStyle]="{
+      fontSize: body.offsetHeight * 0.32 + 'px',
+      lineHeight: footerBox.offsetHeight  + 'px'
+      }">
+      报警
+      <span style="color: red" class="info-value">{{_data[0].value + _data[1].value}}条</span>
+    </div>
+  </div>
+
+  <div class="right" #right>
+    <div></div>
+    <div #scanner class="scanner" [ngStyle]="{width: (right.offsetWidth>right.offsetHeight? right.offsetHeight: right.offsetWidth) * _scannerScale + 'px',
+      height: (right.offsetWidth>right.offsetHeight? right.offsetHeight: right.offsetWidth) * _scannerScale + 'px',
+      left: 'calc(50% - ' + scanner.offsetWidth + 'px)',
+      top: 'calc(50% - ' + scanner.offsetHeight + 'px)'}">
+    </div>
+  </div>
+</div>

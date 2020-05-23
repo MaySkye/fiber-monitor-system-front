@@ -86,7 +86,7 @@ export class MonitorDisplayHomeWidgetComponent implements OnInit {
   // 应用设置
   public applyArgs(params) {
     if (this._fileViewer) {
-      if (this._fileViewer.type == 'mxe-file') {
+      if (this._fileViewer.type == 'mxe-file' || this._fileViewer.type ==='default-mxe-file') {
         this._fileViewer.applyMxGraphArgs(params);
       } else if (this._fileViewer.type == 'text') {
         this._fileViewer.applyTextArgs(params);

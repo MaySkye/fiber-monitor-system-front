@@ -9,10 +9,6 @@ import { di } from '@delon/form/src/utils';
 })
 export class MonitorDisplayHomeComponent implements OnInit {
 
-
-  data: any = {};
-  loading = true;
-
   /* 这里是支持调节的参数 */
   public transitionDuration = 100;  // 过渡动画延时(s)
   public dimension = 3;  // 宫格维度
@@ -609,25 +605,6 @@ export class MonitorDisplayHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    // 设置data
-    this.data = [
-      { time: '2019-07-17', value: 7 }
-      , { time: '2019-07-18', value: 5 }
-      , { time: '2019-07-19', value: 4 }
-      , { time: '2019-07-20', value: 2 }
-      , { time: '2019-07-21', value: 4 }
-      , { time: '2019-07-22', value: 7 }
-      , { time: '2019-07-23', value: 5 }
-      , { time: '2019-07-24', value: 6 }
-      , { time: '2019-07-25', value: 5 }
-      , { time: '2019-07-26', value: 9 }
-      , { time: '2019-07-27', value: 6 }
-      , { time: '2019-07-28', value: 3 }
-      , { time: '2019-07-29', value: 1 }
-      , { time: '2019-07-30', value: 5 }
-      , { time: '2019-07-31', value: 3 }
-      , { time: '2019-08-01', value: 6 }
-      , { time: '2019-08-02', value: 5 }];
     // 初始化宫格参数
     this.initArgs();
     // 添加默认站点组态图

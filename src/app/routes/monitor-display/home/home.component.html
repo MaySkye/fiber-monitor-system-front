@@ -135,15 +135,10 @@
                     id="siteMaintenanceAccount">
       <ng-template #title>
         <i nz-icon nzType="medicine-box" nzTheme="outline"></i>
-        总览
+        设备数据总览
       </ng-template>
       <ng-template #content>
-        <ww-card upText="站点维护数量" downText="6560">
-          <ng-template #body>
-            <ww-mini-bar [data]="data"></ww-mini-bar>
-          </ng-template>
-          <ng-template #footer>转化率 60%</ng-template>
-        </ww-card>
+        <ww-site-radar></ww-site-radar>
       </ng-template>
     </ww-home-widget>
 

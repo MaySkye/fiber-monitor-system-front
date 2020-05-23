@@ -19,7 +19,7 @@ export class WwCommonService {
     localStorage.setItem('ww-token', this._token);
   }
 
-  private postAuthorization(iframe: any) {
+  public postAuthorization(iframe: any) {
     this._token = this._token || localStorage.getItem('ww-token');
     if (this._token) {
       let msg = {
@@ -27,16 +27,18 @@ export class WwCommonService {
         content: this._token,
       };
       iframe.contentWindow.postMessage(msg, '*');
+      console.warn(`Post Token: ${this._token}`);
     } else {
       console.error('Token为空');
     }
   }
 
   public doHandleForMxGraph(iframe: any) {
+    console.warn('Wait for mxGraph loaded!');
     window.onmessage = (event) => {
       if (event.data.type == 'loaded') {
-        this.postAuthorization(iframe);
         console.warn(`Get MxGraph's message: ${JSON.stringify(event.data)}`);
+        this.postAuthorization(iframe);
       }
     };
   }

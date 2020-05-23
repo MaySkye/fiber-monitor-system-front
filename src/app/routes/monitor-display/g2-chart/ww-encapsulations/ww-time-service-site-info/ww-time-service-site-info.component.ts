@@ -24,7 +24,7 @@ export class MonitorDisplayWwTimeServiceSiteInfoComponent implements OnInit {
     }, 1000);
     setInterval(() => {
       this.updateWorkingSiteNumber(426);
-    }, 5000);
+    }, 3000);
   }
 
 
