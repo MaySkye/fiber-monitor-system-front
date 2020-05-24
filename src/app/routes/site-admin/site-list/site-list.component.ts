@@ -51,7 +51,7 @@ export class SiteAdminSiteListComponent implements OnInit {
                 'sitelevel': data.site_level,
               },
             };
-            this.router.navigate(['/site-admin/ww-common'], queryParams).then();
+            this.router.navigate(['/site-admin/mxgraph'], queryParams).then();
           },
         },
         {
