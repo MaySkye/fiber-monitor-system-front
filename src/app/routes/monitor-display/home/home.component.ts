@@ -469,16 +469,17 @@ export class MonitorDisplayHomeComponent implements OnInit {
       // 绘制重定位提示框
       that.fillElement(element.parentNode.dataset.begin, that._locationTip, element.parentNode.dataset.size);
       // 鼠标偏移距离
-      let xMovement = 0;
-      let yMovement = 0;
+      console.error(event);
+      let oriX = event.clientX;
+      let oriY = event.clientY;
       // 元素block
       let blocks: any = document.querySelectorAll(that._blockStyleClassName);
       let blockOffsetWidth = blocks[1].offsetLeft - blocks[0].offsetLeft;
       let blockOffsetHeight = blocks[that.dimension].offsetTop - blocks[0].offsetTop;
       that._mashup.onmousemove = function(event) {
         // 鼠标移动总距离
-        xMovement += event.movementX;
-        yMovement += event.movementY;
+        let xMovement = event.clientX - oriX;
+        let yMovement = event.clientY - oriY;
         // 鼠标位移/block尺寸
         let xBlockOffset = Math.trunc(xMovement / blockOffsetWidth);
         let yBlockOffset = Math.trunc(yMovement / blockOffsetHeight);
