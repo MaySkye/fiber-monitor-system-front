@@ -98,7 +98,7 @@
     </ww-home-widget>
 
     <!-- 主要干线传输稳定度 -->
-    <ww-home-widget _draggable="true" [resize]="_resize"
+    <ww-home-widget _draggable="true" [resize]="_resize" [settingList]="['refreshDelay', 'errorColor']"
                     id="mainWireStability">
       <ng-template #title>
         <i nz-icon nzType="project" nzTheme="outline"></i>
