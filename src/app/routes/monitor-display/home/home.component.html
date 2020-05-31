@@ -121,14 +121,28 @@
       </ng-template>
     </ww-home-widget>
 
-    <!-- 监控组件  -->
-    <!--    <ww-home-widget _draggable="true" [resize]="_resize" -->
-    <!--                    id="visitorAccount">-->
-    <!--      <ng-template #title>总览</ng-template>-->
-    <!--      <ng-template #content>-->
-    <!--        <ww-visitor-number></ww-visitor-number>-->
-    <!--      </ng-template>-->
-    <!--    </ww-home-widget>-->
+    <!-- 访客组件  -->
+    <ww-home-widget _draggable="true" [resize]="_resize"
+                    id="visitorAccount">
+      <ng-template #title>
+        <i nz-icon nzType="team" nzTheme="outline"></i>
+        访客
+      </ng-template>
+      <ng-template #content>
+        <ww-visitor-number></ww-visitor-number>
+      </ng-template>
+    </ww-home-widget>
+
+    <!-- 设备维护组件 -->
+    <ww-home-widget _draggable="true" [resize]="_resize" id="maintenanceCard">
+      <ng-template #title>
+        <i nz-icon nzType="tool" nzTheme="outline"></i>
+        设备维护
+      </ng-template>
+      <ng-template #content>
+        <ww-site-maintenance-card></ww-site-maintenance-card>
+      </ng-template>
+    </ww-home-widget>
 
     <!-- 监控组件  -->
     <ww-home-widget _draggable="true" [resize]="_resize"
