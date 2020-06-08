@@ -11,6 +11,8 @@ import { UserRegisterResultComponent } from './passport/register-result/register
 // single pages
 import { CallbackComponent } from './callback/callback.component';
 import { UserLockComponent } from './passport/lock/lock.component';
+import { MainMenuComponent } from '../main-menu/main-menu.component';
+import { ItemPaneComponent } from '../main-menu/item-pane/item-pane.component';
 
 const COMPONENTS = [
   DashboardComponent,
@@ -21,6 +23,9 @@ const COMPONENTS = [
   // single pages
   CallbackComponent,
   UserLockComponent,
+  // 主菜单
+  MainMenuComponent,
+  ItemPaneComponent
 ];
 const COMPONENTS_NOROUNT = [];
 

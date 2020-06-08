@@ -14,6 +14,8 @@ import { UserRegisterResultComponent } from './passport/register-result/register
 // single pages
 import { CallbackComponent } from './callback/callback.component';
 import { UserLockComponent } from './passport/lock/lock.component';
+import { LayoutFullScreenComponent } from '../layout/fullscreen/fullscreen.component';
+import { MainMenuComponent } from '../main-menu/main-menu.component';
 
 const routes: Routes = [
   {
@@ -35,12 +37,11 @@ const routes: Routes = [
     ],
   },
   // 全屏布局
-  // {
-  //     path: 'fullscreen',
-  //     component: LayoutFullScreenComponent,
-  //     children: [
-  //     ]
-  // },
+  {
+    path: 'fullscreen',
+    component: LayoutFullScreenComponent,
+    children: [],
+  },
   // passport
   {
     path: 'passport',
@@ -55,6 +56,10 @@ const routes: Routes = [
   // 单页不包裹Layout
   { path: 'callback/:type', component: CallbackComponent },
   { path: '**', redirectTo: 'exception/404' },
+  // 主菜单
+  {
+    path: 'main-menu', component: MainMenuComponent,
+  },
 ];
 
 @NgModule({
