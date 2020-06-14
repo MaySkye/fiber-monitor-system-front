@@ -18,7 +18,7 @@ export class MonitorDisplaySiteRadarComponent implements OnInit {
   private _chart;
   private _oriSize;
   private _animate: boolean = true;
-  protected _data;
+  public _data;
   public _scannerScale = 0.375;
 
 
