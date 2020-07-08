@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+  <title>主菜单</title>
+  <style type="text/css">
+    @font-face {
+      font-family: FZCQYT;
+      src: url('./FZCQJW.TTF')
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      min-width: 1280px;
+      min-height: 720px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .background {
+      width: 100%;
+      height: 100%;
+      background-image: url("./background.png");
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 1200px;
+      transform: translateY(-50%);
+      width: 300px;
+      height: 500px;
+    }
+
+    .menu-item {
+      display: inline-block;
+      background-color: #337DF7;
+      width: 300px;
+      height: 58px;
+      border-radius: 5px;
+      box-shadow: 0 2px 2px 2px rgba(166, 242, 255, 0.5);
+      color: white;
+      line-height: 58px;
+      font-family: 'FZCQYT', serif;
+      font-size: 25px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="background">
+  <div class="menu-container">
+    <a class="menu-item" href="https://192.168.253.10:4433/#/usertable" target="_blank">安全管理系统</a>
+    <a class="menu-item" href="http://192.168.253.13:9092/admin/login.jsp" target="_blank">故障维修系统</a>
+    <a class="menu-item" href="http://192.168.253.11:8084/jinFang_Boiler_war%20exploded/" target="_blank">光纤授时报表系统</a>
+    <a class="menu-item" href="http://192.168.253.11:4200/#/passport/login" target="_blank">光纤授时态势监控系统</a>
+    <a class="menu-item" style="font-size: 25px;" href="http://192.168.253.11:4203/iot-knowledge-front/#/passport/login" target="_blank">物联网知识子系统</a>
+  </div>
+</div>
+</body>
+</html>
